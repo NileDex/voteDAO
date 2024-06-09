@@ -1,0 +1,137 @@
+.proposal {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  max-width: 100%;
+  padding: 0 10px; /* Add some padding to ensure it doesn't touch the edges */
+  box-sizing: border-box;
+  margin-bottom: 50px;
+}
+
+.proposal-container {
+  width: 100%;
+  overflow-x: auto;
+
+  
+
+
+}
+.proposal-filter{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 800px;
+  margin: auto;
+}
+.proposal-filter input{
+ width: 200px;
+ padding: 10px ;
+ border: 1.5px solid  #ffc30d ;
+ border-radius: 13px;
+ margin: 10px 5px;
+}
+.styled-table {
+  
+  background: #4b4b4b;
+  margin: 0 auto;
+  width: 820px;
+  border-collapse: collapse;
+  font-size: 18px;
+  text-align: left;
+  border-radius: 15px;
+}
+
+.styled-table th, .styled-table td {
+  padding: 12px 15px;
+}
+
+.styled-table thead tr {
+  color: #ffc30d;
+  text-align: left;
+}
+
+
+
+
+
+
+
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+a:hover, a:focus {
+  text-decoration: none;
+  color: inherit;
+}
+
+/* Specific class for custom links */
+.custom-link {
+  text-decoration: none;
+  color: inherit;
+}
+
+.custom-link:hover, .custom-link:focus {
+  text-decoration: none;
+  color: inherit;
+}
+
+/* Specific styling for links within table cells */
+.link a {
+  text-decoration: none;
+  color: inherit;
+}
+
+.link a:hover, .link a:focus {
+  text-decoration: none;
+  color: inherit;
+}
+
+
+
+
+
+
+
+
+.styled-table tbody tr {
+  border-bottom: 1px solid #dddddd;
+  color: #FFF;
+}
+
+.styled-table tbody tr:nth-of-type(even) {
+  background-color: #4b4b4b;
+}
+
+.styled-table tbody tr.active-row {
+  font-weight: bold;
+  color: #009879;
+}
+
+@media screen and (max-width: 600px) {
+  .proposal-container {
+      width: 100%;
+      overflow-x: auto;
+      border: 1px solid #ffc30d;
+      border-radius: 15px;
+  }
+  .styled-table {
+      width: 100%;
+      font-size: 14px;
+      white-space: nowrap;
+  }
+
+  .styled-table th, .styled-table td {
+      padding: 8px 10px;
+  }
+  .proposal-filter{
+    width: 100%;
+  }
+  .proposal-filter h3{
+    display: none;
+  }
+}
