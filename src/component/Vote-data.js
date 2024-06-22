@@ -13,7 +13,7 @@ const Votedata = () => {
                 <div className="vdata-wallet-action">
                     <p>Amount</p>
                     <div className="vdata-wallet-action-flex">
-                        <p><FaWallet /><span>0</span> MOVE</p>
+                        <p><FaWallet /><span>1000</span> MOVE</p>
                         <h6>Max</h6>
                         <h6>Half</h6>
                     </div>
