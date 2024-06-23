@@ -5,7 +5,7 @@ const Votedata = () => {
         <div className="vdata-container">
 
             <div className="vdata-info-one">
-                <div className="vote-power"><p>0   </p><span><ImPower /></span></div>
+                <div className="vote-power"><p>1000   </p><span><ImPower /></span></div>
                 <h3>Lock MOVE tokens to receive your voting power. Learn more</h3>
             </div>
 
