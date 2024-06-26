@@ -1,5 +1,6 @@
 import { FaWallet } from "react-icons/fa";
 import { ImPower } from "react-icons/im";
+
 const Votedata = () => {
     return (
         <div className="vdata-container">
