@@ -1,4 +1,4 @@
-module my_addrx::Voting1
+module my_addrx::Voting
 {
 
 use std::signer;

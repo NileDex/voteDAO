@@ -11,9 +11,10 @@ body{
   
 }
 body.light {
-  background-color: white;
+  background: linear-gradient(to bottom, #FFA500, white);
   color: black;
 }
+
 
 body.dark {
   background-color: black;
@@ -352,6 +353,57 @@ body.dark {
 .content {
   padding: 20px;
 }
+.faq {
+  font-family: inherit;
+  max-width: 780px;
+  margin: 0 auto;
+  padding: 20px;
+  background-color: #4b4b4b;
+  border-radius: 8px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  color: white;
+  margin-bottom: 20px;
+}
+
+.faq h2 {
+  font-size: 24px;
+  color: #ffffff;
+  margin-bottom: 20px;
+}
+
+.faq-list {
+  margin-top: 20px;
+}
+
+.faq-item {
+  border-bottom: 1px solid #ccc;
+}
+
+.faq-question {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px;
+  cursor: pointer;
+  background-color:#b1b1b1;
+}
+
+.faq-question h3 {
+  font-size: 18px;
+  color: #333;
+  margin: 0;
+}
+
+.faq-question span {
+  font-size: 20px;
+  color: #666;
+}
+
+.faq-answer {
+  padding: 10px;
+  background-color: #000000;
+}
+
 
 @media only screen and (max-width: 600px) {
   .header{
@@ -411,6 +463,7 @@ body.dark {
     width: 280px;
     margin: 20px;
   }
+  
 }
 
 @media (max-width: 768px) {
@@ -474,5 +527,11 @@ body.dark {
     width: 100%;
     padding: 8px 12px;
     font-size: 16px;
+  }
+}
+@media (max-width: 768px) {
+  .faq {
+      max-width: 100%;
+      border-radius: 0;
   }
 }
