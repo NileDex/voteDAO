@@ -1,3 +1,4 @@
+
 .proposal {
   display: flex;
   flex-direction: column;
@@ -111,6 +112,183 @@ a:hover, a:focus {
   font-weight: bold;
   color: #009879;
 }
+
+.footer {
+  background-color: rgb(0, 0, 0);
+  color: #FFFFFF;
+  padding: 40px 0;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+
+/* Logo styling and animation */
+.footer .logo {
+  position: absolute;
+  top: 20px;
+  left: 20px;
+  opacity: 0;
+  transform: translateX(-50px);
+  animation: logoAppear 1s forwards;
+}
+
+/* Animation keyframes for logo */
+@keyframes logoAppear {
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+/* Section styling */
+.footer .section {
+  margin-bottom: 20px;
+  opacity: 0;
+  transform: translateX(30px);
+  animation: fadeInRight 1s forwards;
+}
+
+/* Animation keyframes for text */
+@keyframes fadeInRight {
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+/* Link styling */
+.footer .link {
+  color: #FFD700;
+  text-decoration: none;
+}
+
+/* Quick links list styling */
+.footer .quick-links ul {
+  list-style: none;
+  padding: 0;
+}
+
+.footer .quick-links li {
+  margin: 5px 0;
+}
+
+/* Contact info styling */
+.footer .contact-info a {
+  color: #FFD700;
+}
+
+/* Copyright styling */
+.footer .copyright {
+  margin-top: 20px;
+}
+.footerlogo{
+  width: 160px;
+}
+
+make the footer retract after some seconds then open once hovered on
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+.faq {
+  font-family: Arial, sans-serif;
+}
+
+.faq-list {
+  margin-top: 20px;
+}
+
+.faq-item {
+  margin-bottom: 15px;
+}
+
+.faq-question {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  cursor: pointer;
+}
+
+.faq-question h3 {
+  margin: 0;
+}
+
+.faq-question button {
+  background-color: #007BFF;
+  color: #fff;
+  border: none;
+  padding: 5px 10px;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.faq-question button:hover {
+  background-color: #0056b3;
+}
+
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  backdrop-filter: blur(10px);
+  z-index: 1000;
+}
+
+.modal-content {
+  background: rgba(255, 255, 255, 0.8);
+  padding: 20px;
+  border-radius: 10px;
+  max-width: 600px;
+  width: 100%;
+  text-align: center;
+  position: relative;
+}
+
+.modal-content h2 {
+  margin-top: 0;
+}
+
+.close-btn {
+  background-color: #007BFF;
+  color: #fff;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 5px;
+  cursor: pointer;
+  position: absolute;
+  bottom: 20px;
+  right: 20px;
+}
+
+.close-btn:hover {
+  background-color: #0056b3;
+}
+
 
 @media screen and (max-width: 600px) {
   .proposal-container {

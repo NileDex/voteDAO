@@ -18,10 +18,23 @@ const FAQ = () => {
         // Add more FAQ items as needed
     ]);
 
+    const [isModalOpen, setIsModalOpen] = useState(false);
+    const [selectedFAQ, setSelectedFAQ] = useState(null);
+
     const toggleFAQ = (index) => {
         const updatedFaqs = [...faqs];
         updatedFaqs[index].open = !updatedFaqs[index].open;
         setFaqs(updatedFaqs);
+    };
+
+    const openModal = (faq) => {
+        setSelectedFAQ(faq);
+        setIsModalOpen(true);
+    };
+
+    const closeModal = () => {
+        setIsModalOpen(false);
+        setSelectedFAQ(null);
     };
 
     return (
@@ -37,11 +50,22 @@ const FAQ = () => {
                         {faq.open && (
                             <div className="faq-answer">
                                 <p>{faq.answer}</p>
+                                <button onClick={() => openModal(faq)}>Read More</button>
                             </div>
                         )}
                     </div>
                 ))}
             </div>
+
+            {isModalOpen && selectedFAQ && (
+                <div className="modal-overlay">
+                    <div className="modal-content">
+                        <h3>{selectedFAQ.question}</h3>
+                        <p>{selectedFAQ.answer}</p>
+                        <button className="modal-close" onClick={closeModal}>Close</button>
+                    </div>
+                </div>
+            )}
         </div>
     );
 };

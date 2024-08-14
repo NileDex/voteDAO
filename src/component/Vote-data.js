@@ -1,5 +1,10 @@
+import React, { useState, useEffect } from 'react';
 import { FaWallet } from "react-icons/fa";
 import { ImPower } from "react-icons/im";
+
+
+
+
 
 const Votedata = () => {
     return (

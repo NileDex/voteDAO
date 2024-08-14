@@ -234,3 +234,13 @@ public entry fun test_add_candidate_after_winner_declared(admin: signer) acquire
 }
 
 }
+
+// There are two resources CandidateList and VoterList and are stored under my_addrx (owner of this module).
+
+// initialize_with_candidate function is called by the owner to initialize and add a new candidate for election.
+
+// add_candidate function is called by the owner to add more candidates.
+
+// vote can be called only once by anybody
+
+// declare_winner function is called to declare the result

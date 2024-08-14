@@ -14,7 +14,7 @@ const Move = () => {
     <div>
       <Header />
       <div className="back">
-        <Link to="/">
+        <Link to="/main"> {/* Update the link to point to the main dApp page */}
           <span className="backicon">
             <IoChevronBackOutline />
           </span>
