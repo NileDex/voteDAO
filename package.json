@@ -6,6 +6,7 @@
     "@aptos-labs/ts-sdk": "^1.26.0",
     "@aptos-labs/wallet-adapter-ant-design": "^2.4.11",
     "@aptos-labs/wallet-adapter-react": "^3.3.0",
+    "@razorlabs/wallet-kit": "^0.4.1",
     "@testing-library/jest-dom": "^5.17.0",
     "@testing-library/react": "^13.4.0",
     "@testing-library/user-event": "^13.5.0",

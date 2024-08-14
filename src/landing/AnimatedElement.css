@@ -31,7 +31,7 @@ body {
   display: block;
   padding: 0;
   margin: 0;
-  color: gold;
+  color: #ffc30d;
   animation: textFadeIn 3s ease-in-out;
 }
 
@@ -67,11 +67,7 @@ body {
   to { opacity: 1; transform: translateX(0); }
 }
 
-@keyframes titleGlow {
-  from { text-shadow: 0 0 10px gold, 0 0 20px gold, 0 0 30px gold; }
-  to { text-shadow: 0 0 20px gold, 0 0 30px gold, 0 0 40px gold; }
-}
-
+/* NP
 @keyframes taglineFadeIn {
   from { opacity: 0; transform: translateY(20px); }
   to { opacity: 1; transform: translateY(0); }

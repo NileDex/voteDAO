@@ -29,7 +29,7 @@
 .proposal-filter input{
  width: 200px;
  padding: 10px ;
- border: 1.5px solid  #ffc30d ;
+ border: 1.5px solid #ffc30d;
  border-radius: 13px;
  margin: 10px 5px;
 }
@@ -158,7 +158,7 @@ a:hover, a:focus {
 
 /* Link styling */
 .footer .link {
-  color: #FFD700;
+  color: #ffc30d;
   text-decoration: none;
 }
 
@@ -174,7 +174,7 @@ a:hover, a:focus {
 
 /* Contact info styling */
 .footer .contact-info a {
-  color: #FFD700;
+  color: #ffc30d;
 }
 
 /* Copyright styling */
@@ -260,15 +260,24 @@ make the footer retract after some seconds then open once hovered on
 }
 
 .modal-content {
-  background: rgba(255, 255, 255, 0.8);
+  background: rgba(41, 41, 41, 0.8);
+  color: #ffc30d;
   padding: 20px;
   border-radius: 10px;
   max-width: 600px;
   width: 100%;
   text-align: center;
   position: relative;
-}
+  border: 1.5px solid #ffc30d;
 
+}
+.modal-close{
+  background: none;
+  color: white;
+  padding: 5px 20px;
+  border: 1.5px solid #ffc30d;
+  border-radius: 15px;
+}
 .modal-content h2 {
   margin-top: 0;
 }

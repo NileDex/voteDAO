@@ -1,12 +1,14 @@
 import React, { useState, useEffect } from 'react';
 import { FaWallet } from "react-icons/fa";
 import { ImPower } from "react-icons/im";
-
-
+import '@razorlabs/wallet-kit/style.css';
+import { AptosConnectButton } from '@razorlabs/wallet-kit';
+import {useAptosWallet} from '@razorlabs/wallet-kit';
 
 
 
 const Votedata = () => {
+    const wallet = useAptosWallet()
     return (
         <div className="vdata-container">
 
@@ -26,7 +28,7 @@ const Votedata = () => {
                 </div>
                 <h3>Connect your wallet below to lock MOVE and vote on Proposals & LFG!</h3>
                 <input className="inputfield" placeholder="MOVE" value={0}/>
-                <button>Connect Wallet</button>
+                <button><AptosConnectButton/></button>
 
 
             </div>

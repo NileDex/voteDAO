@@ -70,7 +70,7 @@ body.dark {
 }
 .prior:hover{
   background: rgb(0, 0, 0);
-  color: #ffc30d;
+  color:#ffda34;
 }
 .set{
   display: flex;
@@ -194,7 +194,7 @@ body.dark {
 }
 .vdata-wallet-action-flex h6 {
   margin-right: 8px;
-  background: #ffc30d;
+  background:#ffc30d;
   padding: 4px;
   border-radius: 5px;
   border: 1px solid #fff;
@@ -380,9 +380,8 @@ body.dark {
   padding: 20px;
   background-color: #4b4b4b;
   border-radius: 8px;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
   color: white;
-  margin-bottom: 20px;
+  border-radius: 15px;
 }
 
 .faq h2 {
@@ -393,37 +392,44 @@ body.dark {
 
 .faq-list {
   margin-top: 20px;
+  
 }
 
-.faq-item {
-  border-bottom: 1px solid #ccc;
-}
 
 .faq-question {
+  border-radius: 15px 15px 0 0;
   display: flex;
   justify-content: space-between;
   align-items: center;
   padding: 10px;
   cursor: pointer;
-  background-color:#b1b1b1;
+  background-color:#272727;
+  color: #ffc30d;
 }
 
 .faq-question h3 {
   font-size: 18px;
-  color: #333;
+  color: #ffc30d;
   margin: 0;
 }
 
 .faq-question span {
-  font-size: 20px;
-  color: #666;
+  font-size: 40px;
+  color: #ffc30d;
 }
 
 .faq-answer {
+  border-radius: 0 0 15px 15px;
   padding: 10px;
-  background-color: #000000;
+  background-color: rgba(0, 0, 0, 0.721);
 }
-
+.openmodal{
+  background: none;
+  color: white;
+  padding: 5px 20px;
+  border: 1.5px solid #ffc30d;
+  border-radius: 15px;
+}
 
 @media only screen and (max-width: 600px) {
   .header{
