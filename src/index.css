@@ -209,7 +209,7 @@ body.dark {
   text-align: center;
   font-size: 17px;
 }
-.vdata-info button{
+/* .vdata-info-button{
   padding: 18px 15px ;
   background-color: #ffc30d;
   color: #fff;
@@ -217,7 +217,7 @@ body.dark {
   border-radius: 15px;
   border: 1.5px solid #fff;
   font-family: inherit;
-}
+} */
 .vdata-info-one p{
   font-size: 40px;
 }

@@ -8,8 +8,7 @@ import { ThemeProvider } from "./component/ThemeContext";
 import { AptosWalletAdapterProvider } from "@aptos-labs/wallet-adapter-react";
 import { AptosWalletProvider } from '@razorlabs/wallet-kit';
 // import '@razorlabs/wallet-kit/style.css';
-
-
+import "./razorlabs-wallet-kit-custom.css";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(

@@ -54,7 +54,7 @@ const Header = () => {
             </div>
           )}
         </section>
-          <AptosConnectButton className='connect-btn' />
+          <AptosConnectButton  className='whit'/>
       </div>
     </div>
   );
