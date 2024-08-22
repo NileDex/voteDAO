@@ -1,4 +1,3 @@
-
 .proposal {
   display: flex;
   flex-direction: column;
@@ -14,27 +13,25 @@
 .proposal-container {
   width: 100%;
   overflow-x: auto;
-
-  
-
-
 }
-.proposal-filter{
+
+.proposal-filter {
   display: flex;
   justify-content: space-between;
   align-items: center;
   width: 800px;
   margin: auto;
 }
-.proposal-filter input{
- width: 200px;
- padding: 10px ;
- border: 1.5px solid #ffc30d;
- border-radius: 13px;
- margin: 10px 5px;
+
+.proposal-filter input {
+  width: 200px;
+  padding: 10px;
+  border: 1.5px solid #ffc30d;
+  border-radius: 13px;
+  margin: 10px 5px;
 }
+
 .styled-table {
-  
   background: #4b4b4b;
   margin: 0 auto;
   width: 820px;
@@ -44,7 +41,8 @@
   border-radius: 15px;
 }
 
-.styled-table th, .styled-table td {
+.styled-table th,
+.styled-table td {
   padding: 12px 15px;
 }
 
@@ -53,19 +51,13 @@
   text-align: left;
 }
 
-
-
-
-
-
-
-
 a {
   text-decoration: none;
   color: inherit;
 }
 
-a:hover, a:focus {
+a:hover,
+a:focus {
   text-decoration: none;
   color: inherit;
 }
@@ -76,7 +68,8 @@ a:hover, a:focus {
   color: inherit;
 }
 
-.custom-link:hover, .custom-link:focus {
+.custom-link:hover,
+.custom-link:focus {
   text-decoration: none;
   color: inherit;
 }
@@ -87,21 +80,15 @@ a:hover, a:focus {
   color: inherit;
 }
 
-.link a:hover, .link a:focus {
+.link a:hover,
+.link a:focus {
   text-decoration: none;
   color: inherit;
 }
 
-
-
-
-
-
-
-
 .styled-table tbody tr {
   border-bottom: 1px solid #dddddd;
-  color: #FFF;
+  color: #fff;
 }
 
 .styled-table tbody tr:nth-of-type(even) {
@@ -115,7 +102,7 @@ a:hover, a:focus {
 
 .footer {
   background-color: rgb(0, 0, 0);
-  color: #FFFFFF;
+  color: #ffffff;
   padding: 40px 0;
   text-align: center;
   position: relative;
@@ -181,33 +168,11 @@ a:hover, a:focus {
 .footer .copyright {
   margin-top: 20px;
 }
-.footerlogo{
+.footerlogo {
   width: 160px;
 }
 
-make the footer retract after some seconds then open once hovered on
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+/* make the footer retract after some seconds then open once hovered on */
 
 .faq {
   font-family: Arial, sans-serif;
@@ -233,7 +198,7 @@ make the footer retract after some seconds then open once hovered on
 }
 
 .faq-question button {
-  background-color: #007BFF;
+  background-color: #007bff;
   color: #fff;
   border: none;
   padding: 5px 10px;
@@ -269,9 +234,8 @@ make the footer retract after some seconds then open once hovered on
   text-align: center;
   position: relative;
   border: 1.5px solid #ffc30d;
-
 }
-.modal-close{
+.modal-close {
   background: none;
   color: white;
   padding: 5px 20px;
@@ -283,7 +247,7 @@ make the footer retract after some seconds then open once hovered on
 }
 
 .close-btn {
-  background-color: #007BFF;
+  background-color: #007bff;
   color: #fff;
   border: none;
   padding: 10px 20px;
@@ -298,27 +262,27 @@ make the footer retract after some seconds then open once hovered on
   background-color: #0056b3;
 }
 
-
 @media screen and (max-width: 600px) {
   .proposal-container {
-      width: 100%;
-      overflow-x: auto;
-      border: 1px solid #ffc30d;
-      border-radius: 15px;
+    width: 100%;
+    overflow-x: auto;
+    border: 1px solid #ffc30d;
+    border-radius: 15px;
   }
   .styled-table {
-      width: 100%;
-      font-size: 14px;
-      white-space: nowrap;
+    width: 100%;
+    font-size: 14px;
+    white-space: nowrap;
   }
 
-  .styled-table th, .styled-table td {
-      padding: 8px 10px;
+  .styled-table th,
+  .styled-table td {
+    padding: 8px 10px;
   }
-  .proposal-filter{
+  .proposal-filter {
     width: 100%;
   }
-  .proposal-filter h3{
+  .proposal-filter h3 {
     display: none;
   }
 }
