@@ -1,13 +1,10 @@
-import React from "react";
-
 import { Link } from "react-router-dom";
-import AnimatedElement from "./animation";
-import "./landingnavbar.css";
-import logo from "../component/images/logo.png";
-import movement from "../component/images/movement.png";
-import CardsContainer from "./Cardcontainer";
-import Footer from "../component/footer";
-
+import AnimatedElement from "./AnimatedElement";
+import "./Navbar.css";
+import logo from "../components/images/logo.png";
+import movement from "../components/images/movement.png";
+import CardsContainer from "./CardsContainer";
+import Footer from "../components/Footer";
 
 const Navbar = () => {
   return (
@@ -46,9 +43,9 @@ const Navbar = () => {
         </div>
       </div>
       <div className="subsection2">
-       <CardsContainer/>
+        <CardsContainer />
       </div>
-      <Footer/>
+      <Footer />
     </nav>
   );
 };

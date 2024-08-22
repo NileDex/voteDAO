@@ -1,36 +1,44 @@
-import React, { useState } from "react";
-import "../App.css";
+import { useState } from "react";
+
+interface FAQItem {
+  question: string;
+  answer: string;
+  open: boolean;
+}
 
 const FAQ = () => {
-  const [faqs, setFaqs] = useState([
+  const [faqs, setFaqs] = useState<FAQItem[]>([
     {
       question: "What is Blockchain?",
       answer:
         "Blockchain is a decentralized digital ledger technology that records transactions across multiple computers in such a way that the registered transactions cannot be altered retroactively.",
+      open: false,
     },
     {
       question: "What are Smart Contracts?",
       answer:
         "Smart contracts are self-executing contracts with the terms of the agreement directly written into code. They automatically execute and enforce the terms of a contract when predetermined conditions are met.",
+      open: false,
     },
     {
       question: "How does Decentralized Governance work?",
       answer:
         "Decentralized governance allows stakeholders of a network or platform to participate in decision-making processes through voting and proposals. It enables decentralized autonomous organizations (DAOs) to operate autonomously based on predefined rules and community consensus.",
+      open: false,
     },
     // Add more FAQ items as needed
   ]);
 
   const [isModalOpen, setIsModalOpen] = useState(false);
-  const [selectedFAQ, setSelectedFAQ] = useState(null);
+  const [selectedFAQ, setSelectedFAQ] = useState<FAQItem | null>(null);
 
-  const toggleFAQ = (index) => {
+  const toggleFAQ = (index: number) => {
     const updatedFaqs = [...faqs];
     updatedFaqs[index].open = !updatedFaqs[index].open;
     setFaqs(updatedFaqs);
   };
 
-  const openModal = (faq) => {
+  const openModal = (faq: FAQItem) => {
     setSelectedFAQ(faq);
     setIsModalOpen(true);
   };

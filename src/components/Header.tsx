@@ -1,11 +1,8 @@
-
-import React, { useState, useEffect } from 'react';
-import logo from './images/logo.png';
+import { useState, useEffect } from "react";
+import logo from "./images/logo.png";
 import { IoSettingsOutline } from "react-icons/io5";
-import ThemeToggle from './ThemeToggle';
-import { AptosConnectButton } from '@razorlabs/wallet-kit';
-
-
+import ThemeToggle from "./ThemeToggle";
+import { AptosConnectButton } from "@razorlabs/wallet-kit";
 
 const Header = () => {
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
@@ -38,13 +35,13 @@ const Header = () => {
 
   return (
     <div className={`header ${isHidden ? "hidden" : ""}`}>
-      <div className='logo'>
+      <div className="logo">
         <img src={logo} alt="logo" />
       </div>
       <div className="headerspecial">
-        <p className='prior'>Priority: Fast</p>
-        <section className='dropdown-container'>
-          <button onClick={toggleDropdown} className='set'>
+        <p className="prior">Priority: Fast</p>
+        <section className="dropdown-container">
+          <button onClick={toggleDropdown} className="set">
             <IoSettingsOutline />
           </button>
           {isDropdownOpen && (
@@ -54,7 +51,7 @@ const Header = () => {
             </div>
           )}
         </section>
-          <AptosConnectButton  className='whit'/>
+        <AptosConnectButton className="whit" />
       </div>
     </div>
   );

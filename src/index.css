@@ -1,5 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Hubballi&display=swap');
-
+@import url("https://fonts.googleapis.com/css2?family=Hubballi&display=swap");
 
 body {
   padding: 0;
@@ -7,7 +6,7 @@ body {
   font-family: "Hubballi", sans-serif;
   font-weight: 400;
   font-style: normal;
-  background-image: url("component/images/bg.png");
+  background-image: url("/images/bg.png");
   background-position: center;
   background-size: cover; /* Ensures the image covers the entire area */
   background-repeat: no-repeat; /* Prevents the image from repeating */
@@ -25,7 +24,7 @@ body.dark {
   background-color: black;
   color: white;
 } */
-.header{
+.header {
   background: #ffc30d;
   color: black;
   display: flex;
@@ -34,7 +33,8 @@ body.dark {
   position: sticky;
   top: 0;
   z-index: 1000;
-  transition: transform 0.3s ease-in-out, background-color 0.3s ease-in-out, opacity 0.3s ease-in-out;
+  transition: transform 0.3s ease-in-out, background-color 0.3s ease-in-out,
+    opacity 0.3s ease-in-out;
   background-color: rgba(255, 195, 13, 1); /* Fully opaque background */
   opacity: 1; /* Fully visible */
 }
@@ -45,36 +45,35 @@ body.dark {
   opacity: 0.5; /* Semi-transparent */
 }
 
-.logo{
- 
-  margin: 0; 
+.logo {
+  margin: 0;
   padding: 0;
 }
-.logo img{
+.logo img {
   margin-left: 15px;
   width: 250px;
 }
-.headerspecial{
+.headerspecial {
   display: flex;
   align-items: center;
   margin-right: 35px;
 }
-.prior{
-  padding: 15px 15px ;
-  background-color:  #443300;
+.prior {
+  padding: 15px 15px;
+  background-color: #443300;
   color: #fff;
   border-radius: 40px;
   margin-right: 8px;
   font-size: 15px;
   font-weight: bold;
 }
-.prior:hover{
+.prior:hover {
   background: rgb(0, 0, 0);
-  color:#ffda34;
+  color: #ffda34;
 }
-.set{
+.set {
   display: flex;
-  background:  #2d2d2d;
+  background: #2d2d2d;
   width: 38px;
   height: 38px;
   color: #fff;
@@ -113,12 +112,12 @@ body.dark {
   background-color: #f1f1f1;
 }
 
-.set:hover{
+.set:hover {
   background: rgb(0, 0, 0);
 }
-.connect-btn{
-  padding: 12px 15px ;
-  background-color:  #443300;
+.connect-btn {
+  padding: 12px 15px;
+  background-color: #443300;
   color: #fff;
   margin: 0 15px 0 8px;
   font-family: inherit;
@@ -127,16 +126,16 @@ body.dark {
   border-radius: 10px;
   border: 1px solid #fff;
 }
-.container{
+.container {
   margin: 50px auto 0 auto;
   text-align: center;
   width: 800px;
 }
-.container h1{
+.container h1 {
   font-family: Verdana, Geneva, Tahoma, sans-serif;
   font-weight: bolder;
 }
-.fol-cont{
+.fol-cont {
   display: flex;
   align-items: center;
   justify-content: center;
@@ -147,11 +146,11 @@ body.dark {
   font-weight: bold;
   margin: auto;
 }
-.twitterico{
+.twitterico {
   padding: 0 10px;
   color: black;
 }
-.vdata-container{
+.vdata-container {
   display: flex;
   align-items: center;
   justify-content: center;
@@ -163,12 +162,12 @@ body.dark {
   width: 800px;
   margin-top: 20px;
   border-radius: 15px;
-  background:rgb(39, 39, 39);
+  background: rgb(39, 39, 39);
   background-size: cover;
   color: #fff;
 }
 
-.vdata-info{
+.vdata-info {
   display: flex;
   flex-direction: column;
   width: 400px;
@@ -179,13 +178,13 @@ body.dark {
   border-radius: 15px;
   color: black;
 }
-.vdata-wallet-action{
+.vdata-wallet-action {
   display: flex;
   justify-content: space-between;
   align-items: center;
   font-weight: bold;
 }
-.vdata-wallet-action-flex{
+.vdata-wallet-action-flex {
   display: flex;
   align-items: center;
 }
@@ -194,18 +193,18 @@ body.dark {
 }
 .vdata-wallet-action-flex h6 {
   margin-right: 8px;
-  background:#ffc30d;
+  background: #ffc30d;
   padding: 4px;
   border-radius: 5px;
   border: 1px solid #fff;
 }
-.inputfield{
-  padding: 18px 15px ;
+.inputfield {
+  padding: 18px 15px;
   border-radius: 15px;
   border: none;
   margin-bottom: 10px;
 }
-.vdata-info h3{
+.vdata-info h3 {
   text-align: center;
   font-size: 17px;
 }
@@ -218,24 +217,24 @@ body.dark {
   border: 1.5px solid #fff;
   font-family: inherit;
 } */
-.vdata-info-one p{
+.vdata-info-one p {
   font-size: 40px;
 }
-.vote-power{
+.vote-power {
   display: flex;
   align-items: center;
 }
-.vote-power p{
-  margin: auto 15px ;
+.vote-power p {
+  margin: auto 15px;
   font-size: 50px;
   font-weight: bolder;
 }
-.vote-power span{
+.vote-power span {
   margin-top: 5px;
   font-weight: bolder;
   font-size: 25px;
 }
-.darkmode-btn{
+.darkmode-btn {
   width: 100px;
   margin: 0 auto;
   background: none;
@@ -243,18 +242,17 @@ body.dark {
   font-size: 20px;
   font-weight: bolder;
 }
-.back{
+.back {
   margin: 15px 25px;
 }
-.backicon{
+.backicon {
   display: flex;
   align-items: center;
   text-decoration: none;
   font-size: 35px;
   padding: 8px;
-
 }
-.votequestion{
+.votequestion {
   display: flex;
   flex-direction: column;
   padding: 20px 10px;
@@ -264,16 +262,16 @@ body.dark {
   width: 750px;
   margin-top: 20px;
   border-radius: 15px;
-  background:rgb(39, 39, 39);
+  background: rgb(39, 39, 39);
   color: #fff;
 }
-.answer-container{
+.answer-container {
   display: flex;
   margin: auto;
   width: 800px;
   padding: 10px;
 }
-.voteanswer{
+.voteanswer {
   display: flex;
   align-self: center;
   justify-content: center;
@@ -284,12 +282,11 @@ body.dark {
   border-radius: 13px;
   padding: 20px;
   border: 1.5px solid rgb(172, 172, 172);
-  background:rgb(39, 39, 39);
+  background: rgb(39, 39, 39);
   color: #fff;
 }
-.voteanswer section{
+.voteanswer section {
   margin: 20px 5px;
-
 }
 .custom-radio {
   display: flex;
@@ -302,16 +299,16 @@ body.dark {
   display: flex;
   align-items: center;
   transform: scale(1.5);
-  margin-right: 10px; 
+  margin-right: 10px;
 }
 
 .custom-radio label {
   cursor: pointer;
 }
-.votebtn{
+.votebtn {
   margin: 10px auto;
   width: 320px;
-  padding: 10px 15px ;
+  padding: 10px 15px;
   background-color: #ffc30d;
   color: #fff;
   font-size: 20px;
@@ -325,21 +322,20 @@ body.dark {
 }
 
 .backicon {
-  display: inline-flex;  /* Ensure the span only takes up as much space as needed */
+  display: inline-flex; /* Ensure the span only takes up as much space as needed */
   align-items: center;
   justify-content: center;
   background-color: gray;
   border-radius: 50%; /* Optional: Makes the background a circle */
-  padding: 10px;  /* Adjust padding as needed */
+  padding: 10px; /* Adjust padding as needed */
   font-size: 24px;
   color: #ffffff;
 }
 
-.votedescription{
+.votedescription {
   width: 350px;
-
 }
-.socials{
+.socials {
   display: flex;
   padding: 0 8px;
   text-decoration: none;
@@ -392,9 +388,7 @@ body.dark {
 
 .faq-list {
   margin-top: 20px;
-  
 }
-
 
 .faq-question {
   border-radius: 15px 15px 0 0;
@@ -403,7 +397,7 @@ body.dark {
   align-items: center;
   padding: 10px;
   cursor: pointer;
-  background-color:#272727;
+  background-color: #272727;
   color: #ffc30d;
 }
 
@@ -423,7 +417,7 @@ body.dark {
   padding: 10px;
   background-color: rgba(0, 0, 0, 0.721);
 }
-.openmodal{
+.openmodal {
   background: none;
   color: white;
   padding: 5px 20px;
@@ -432,24 +426,24 @@ body.dark {
 }
 
 @media only screen and (max-width: 600px) {
-  .header{
+  .header {
     width: 100%;
-    padding: 8px 0; 
+    padding: 8px 0;
   }
-  .headerspecial{
+  .headerspecial {
     display: flex;
     align-items: center;
     margin-right: 3px;
   }
-  .logo img{
+  .logo img {
     width: 130px;
     margin: 0;
     padding: 0;
   }
-  .prior{
+  .prior {
     display: none;
   }
-  
+
   .dropdown-container {
     position: relative;
     display: none;
@@ -477,22 +471,21 @@ body.dark {
   .dropdown-menu a:hover {
     background-color: #f1f1f1;
   }
-  .container{
+  .container {
     width: 100%;
     justify-content: center;
   }
-  .vdata-container{
+  .vdata-container {
     width: 320px;
     display: flex;
     flex-direction: column;
     margin-right: auto;
     margin-left: auto;
   }
-  .vdata-info{
+  .vdata-info {
     width: 280px;
     margin: 20px;
   }
-  
 }
 
 @media (max-width: 768px) {
@@ -544,7 +537,6 @@ body.dark {
     flex-direction: column;
     align-items: center;
     margin: 0 5px; /* Remove conflicting margin rules */
-
   }
 
   .votedescription {
@@ -560,7 +552,7 @@ body.dark {
 }
 @media (max-width: 768px) {
   .faq {
-      max-width: 100%;
-      border-radius: 0;
+    max-width: 100%;
+    border-radius: 0;
   }
 }

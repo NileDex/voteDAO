@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Hubballi&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Hubballi&display=swap");
 
 body {
   font-family: "Hubballi", sans-serif;
@@ -52,19 +52,41 @@ body {
 
 /* Animations */
 @keyframes logoFadeIn {
-  from { opacity: 0; transform: scale(0.5); }
-  to { opacity: 1; transform: scale(1); }
+  from {
+    opacity: 0;
+    transform: scale(0.5);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
 }
 
 @keyframes logoBounce {
-  0%, 20%, 50%, 80%, 100% { transform: translateY(0); }
-  40% { transform: translateY(-20px); }
-  60% { transform: translateY(-10px); }
+  0%,
+  20%,
+  50%,
+  80%,
+  100% {
+    transform: translateY(0);
+  }
+  40% {
+    transform: translateY(-20px);
+  }
+  60% {
+    transform: translateY(-10px);
+  }
 }
 
 @keyframes textFadeIn {
-  from { opacity: 0; transform: translateX(-50px); }
-  to { opacity: 1; transform: translateX(0); }
+  from {
+    opacity: 0;
+    transform: translateX(-50px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
 }
 
 /* NP
@@ -75,21 +97,51 @@ body {
 
 /* Glitch Effect */
 @keyframes glitch {
-  0% { transform: translate(0); }
-  20% { transform: translate(-2px, 2px); }
-  40% { transform: translate(-2px, -2px); }
-  60% { transform: translate(2px, 2px); }
-  80% { transform: translate(2px, -2px); }
-  100% { transform: translate(0); }
+  0% {
+    transform: translate(0);
+  }
+  20% {
+    transform: translate(-2px, 2px);
+  }
+  40% {
+    transform: translate(-2px, -2px);
+  }
+  60% {
+    transform: translate(2px, 2px);
+  }
+  80% {
+    transform: translate(2px, -2px);
+  }
+  100% {
+    transform: translate(0);
+  }
 }
 
 @keyframes glitch2 {
-  0% { clip: rect(42px, 9999px, 44px, 0); transform: skew(0.3deg); }
-  20% { clip: rect(12px, 9999px, 44px, 0); transform: skew(0.1deg); }
-  40% { clip: rect(56px, 9999px, 34px, 0); transform: skew(0.2deg); }
-  60% { clip: rect(62px, 9999px, 60px, 0); transform: skew(0.5deg); }
-  80% { clip: rect(10px, 9999px, 14px, 0); transform: skew(0.1deg); }
-  100% { clip: rect(12px, 9999px, 74px, 0); transform: skew(0.3deg); }
+  0% {
+    clip: rect(42px, 9999px, 44px, 0);
+    transform: skew(0.3deg);
+  }
+  20% {
+    clip: rect(12px, 9999px, 44px, 0);
+    transform: skew(0.1deg);
+  }
+  40% {
+    clip: rect(56px, 9999px, 34px, 0);
+    transform: skew(0.2deg);
+  }
+  60% {
+    clip: rect(62px, 9999px, 60px, 0);
+    transform: skew(0.5deg);
+  }
+  80% {
+    clip: rect(10px, 9999px, 14px, 0);
+    transform: skew(0.1deg);
+  }
+  100% {
+    clip: rect(12px, 9999px, 74px, 0);
+    transform: skew(0.3deg);
+  }
 }
 
 .logotitle::before {
@@ -103,7 +155,6 @@ body {
   clip: rect(0, 900px, 0, 0);
   animation: glitch 1s infinite, glitch2 0.3s infinite;
 }
-
 
 @media (max-width: 768px) {
   .animated-element1 {

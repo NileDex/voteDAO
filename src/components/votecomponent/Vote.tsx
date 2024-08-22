@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { ChangeEvent, useState } from "react";
 import Header from "../Header";
 import { IoChevronBackOutline } from "react-icons/io5";
 import { Link } from "react-router-dom";
@@ -6,7 +6,7 @@ import { Link } from "react-router-dom";
 const Move = () => {
   const [selectedOption, setSelectedOption] = useState("");
 
-  const handleOptionChange = (event) => {
+  const handleOptionChange = (event: ChangeEvent<HTMLInputElement>) => {
     setSelectedOption(event.target.value);
   };
 
@@ -14,7 +14,9 @@ const Move = () => {
     <div>
       <Header />
       <div className="back">
-        <Link to="/main"> {/* Update the link to point to the main dApp page */}
+        <Link to="/main">
+          {" "}
+          {/* Update the link to point to the main dApp page */}
           <span className="backicon">
             <IoChevronBackOutline />
           </span>
