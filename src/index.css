@@ -449,9 +449,10 @@ body.dark {
   .prior{
     display: none;
   }
+  
   .dropdown-container {
     position: relative;
-    display: inline-block;
+    display: none;
   }
   .dropdown-menu {
     width: 180px;
