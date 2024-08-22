@@ -120,6 +120,7 @@ const Proposals = () => {
                         <tr>
                             <th>id</th>
                             <th>Topic</th>
+                            <th></th>
                             <th>Start</th>
                             <th>End</th>
                             <th>Project</th>
@@ -133,6 +134,7 @@ const Proposals = () => {
                                     <Link to={proposal.link}>{proposal.id}.</Link>
                                 </td>
                                 <td><Link to={proposal.link}>{proposal.topic}</Link></td>
+                                <button><Link to={proposal.link}><p>Vote Here</p></Link></button>
                                 <td>{proposal.start}</td>
                                 <td>{proposal.end}</td>
                                 <td>{proposal.project}</td>
