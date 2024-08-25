@@ -22,7 +22,7 @@ const Votedata = () => {
       },
     });
 
-    refetchStake();
+    setTimeout(() => refetchStake(), 5000);
   }
 
   async function unstakeMove() {
@@ -35,7 +35,7 @@ const Votedata = () => {
       },
     });
 
-    refetchStake();
+    setTimeout(() => refetchStake(), 5000);
   }
 
   return (
