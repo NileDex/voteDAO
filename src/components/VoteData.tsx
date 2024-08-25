@@ -3,16 +3,46 @@ import { ImPower } from "react-icons/im";
 import "@razorlabs/wallet-kit/style.css";
 import { AptosConnectButton } from "@razorlabs/wallet-kit";
 import { useAptosWallet } from "@razorlabs/wallet-kit";
+import { useStake } from "./useStake";
+import { MODULE_ADDRESS } from "../constants";
+import { useRef } from "react";
 
 const Votedata = () => {
-  const wallet = useAptosWallet();
-  console.log(wallet.address);
+  const { data: stake, refetch: refetchStake } = useStake();
+  const { account, signAndSubmitTransaction } = useAptosWallet();
+  const amountRef = useRef<HTMLInputElement>(null);
+
+  async function stakeMove() {
+    const amount = parseFloat(amountRef.current?.value || "0");
+
+    await signAndSubmitTransaction({
+      payload: {
+        function: `${MODULE_ADDRESS}::Staking::stake`,
+        functionArguments: [(amount * Math.pow(10, 8)).toString()],
+      },
+    });
+
+    setTimeout(() => refetchStake(), 5000);
+  }
+
+  async function unstakeMove() {
+    const amount = parseFloat(amountRef.current?.value || "0");
+
+    await signAndSubmitTransaction({
+      payload: {
+        function: `${MODULE_ADDRESS}::Staking::unstake`,
+        functionArguments: [(amount * Math.pow(10, 8)).toString()],
+      },
+    });
+
+    setTimeout(() => refetchStake(), 5000);
+  }
 
   return (
     <div className="vdata-container">
       <div className="vdata-info-one">
         <div className="vote-power">
-          <p>1000 </p>
+          <p>Staked: {stake}</p>
           <span>
             <ImPower />
           </span>
@@ -28,15 +58,23 @@ const Votedata = () => {
               <FaWallet />
               <span>1</span> MOVE
             </p>
-            <h6>Max</h6>
-            <h6>Half</h6>
           </div>
         </div>
         <h3>
           Connect your wallet below to lock MOVE and vote on Proposals & LFG!
         </h3>
-        <input className="inputfield" placeholder="MOVE" value={0} />
-        <AptosConnectButton className="whit" />
+        <input className="inputfield" placeholder="MOVE" ref={amountRef} />
+        {!account?.address && <AptosConnectButton className="whit" />}
+        {account?.address && (
+          <>
+            <button type="button" onClick={() => stakeMove()}>
+              Stake
+            </button>
+            <button type="button" onClick={() => unstakeMove()}>
+              Unstake
+            </button>
+          </>
+        )}
       </div>
     </div>
   );
