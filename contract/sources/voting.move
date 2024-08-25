@@ -4,6 +4,7 @@ module my_addrx::Voting
 use std::signer;
 use std::vector;
 use std::simple_map::{Self, SimpleMap};
+#[test_only]
 use std::account;
 
 

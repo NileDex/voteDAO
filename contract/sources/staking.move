@@ -3,15 +3,14 @@ module my_addrx::Staking {
     use aptos_framework::object;
     use aptos_framework::aptos_account;
     use aptos_framework::coin;
-    use aptos_framework::aptos_coin::{Self, AptosCoin};
+    use aptos_framework::aptos_coin::{AptosCoin};
 
     /// Error codes
     const EINSUFFICIENT_STAKE: u64 = 0;
-    const EALREADY_STAKED: u64 = 1;
-    const EINVALID_UNSTAKE_AMOUNT: u64 = 2;
-    const EINVALID_REWARD_AMOUNT: u64 = 3;
-    const EINVALID_APY: u64 = 4;
-    const EINSUFFICIENT_BALANCE: u64 = 5;
+    const EINVALID_UNSTAKE_AMOUNT: u64 = 1;
+    const EINVALID_REWARD_AMOUNT: u64 = 2;
+    const EINVALID_APY: u64 = 3;
+    const EINSUFFICIENT_BALANCE: u64 = 4;
 
     const VAULT_SEED: vector<u8> = b"VAULT";
 
@@ -34,16 +33,22 @@ module my_addrx::Staking {
 
     // ================================= Entry Functions ================================== //
 
-    public entry fun stake(acc_own: &signer,amount: u64) {
+    public entry fun stake(acc_own: &signer, amount: u64) acquires StakedBalance {
         let from = signer::address_of(acc_own);
         let balance = coin::balance<AptosCoin>(from);
         assert!(balance >= amount, EINSUFFICIENT_BALANCE);
-        assert!(!exists<StakedBalance>(from), EALREADY_STAKED);
-        aptos_account::transfer(acc_own, get_vault_addr(), amount);
-        let staked_balance = StakedBalance {
-            staked_balance: amount
+
+        if(!exists<StakedBalance>(from)) {
+            let staked_balance = StakedBalance {
+                staked_balance: amount
+            };
+            move_to(acc_own, staked_balance);
+        } else {
+            let staked_balance = borrow_global_mut<StakedBalance>(from);
+            staked_balance.staked_balance = staked_balance.staked_balance + amount;
         };
-        move_to(acc_own, staked_balance);
+
+        aptos_account::transfer(acc_own, get_vault_addr(), amount);
     }
 
     public entry fun unstake(acc_own: &signer,amount: u64) acquires StakedBalance, Vault {
@@ -78,10 +83,12 @@ module my_addrx::Staking {
     use aptos_framework::account;
     #[test_only]
     use aptos_framework::coin::{BurnCapability, MintCapability};
+    #[test_only]
+    use aptos_framework::aptos_coin;
 
-    #[test(aptos_framework = @0x1, creator = @my_addrx, alice = @0x3, bob = @0x4)]
-    public entry fun test_staking(aptos_framework: &signer, creator: &signer, alice: &signer, bob: &signer) acquires StakedBalance, Vault {
-        let (burn_cap, mint_cap) = setup_test(aptos_framework, creator, alice, bob);
+    #[test(aptos_framework = @0x1, creator = @my_addrx, alice = @0x3)]
+    public entry fun test_staking(aptos_framework: &signer, creator: &signer, alice: &signer) acquires StakedBalance, Vault {
+        let (burn_cap, mint_cap) = setup_test(aptos_framework, creator, alice);
 
         // Alice stakes some tokens
         stake(alice, 500);
@@ -101,10 +108,10 @@ module my_addrx::Staking {
         coin::destroy_mint_cap(mint_cap);
     }
 
-    #[test(aptos_framework = @0x1, creator = @my_addrx, alice = @0x3, bob = @0x4)]
+    #[test(aptos_framework = @0x1, creator = @my_addrx, alice = @0x3)]
     #[expected_failure(abort_code = EINVALID_UNSTAKE_AMOUNT, location = Self)]
-    public entry fun test_block_unstake_limit(aptos_framework: &signer, creator: &signer, alice: &signer, bob: &signer) acquires StakedBalance, Vault {
-        let (burn_cap, mint_cap) = setup_test(aptos_framework, creator, alice, bob);
+    public entry fun test_block_unstake_limit(aptos_framework: &signer, creator: &signer, alice: &signer) acquires StakedBalance, Vault {
+        let (burn_cap, mint_cap) = setup_test(aptos_framework, creator, alice);
 
         // Alice stakes some tokens
         stake(alice, 500);
@@ -120,31 +127,31 @@ module my_addrx::Staking {
         coin::destroy_mint_cap(mint_cap);
     }
 
-    #[test(aptos_framework = @0x1, creator = @my_addrx, alice = @0x3, bob = @0x4)]
-    #[expected_failure(abort_code = EALREADY_STAKED, location = Self)]
-    public entry fun test_should_only_stake_once(aptos_framework: &signer, creator: &signer, alice: &signer, bob: &signer) {
-        let (burn_cap, mint_cap) = setup_test(aptos_framework, creator, alice, bob);
+    #[test(aptos_framework = @0x1, creator = @my_addrx, alice = @0x3)]
+    public entry fun test_should_allow_multiple_stakes(aptos_framework: &signer, creator: &signer, alice: &signer) acquires StakedBalance {
+        let (burn_cap, mint_cap) = setup_test(aptos_framework, creator, alice);
 
         // Alice stakes some tokens
         stake(alice, 500);
 
-        // Alice stakes again, should fail (WHY????)
+        // Alice stakes again
         stake(alice, 100);
+
+        // Check that Alice's staked balance is correct
+        let alice_resource = borrow_global<StakedBalance>(signer::address_of(alice));
+        assert!(alice_resource.staked_balance == 600, 100);
 
         coin::destroy_burn_cap(burn_cap);
         coin::destroy_mint_cap(mint_cap);
     }
 
     #[test_only]
-    fun setup_test(aptos_framework: &signer, creator: &signer, alice: &signer, bob: &signer): (BurnCapability<AptosCoin>, MintCapability<AptosCoin>) {
+    fun setup_test(aptos_framework: &signer, creator: &signer, alice: &signer): (BurnCapability<AptosCoin>, MintCapability<AptosCoin>) {
         account::create_account_for_test(signer::address_of(alice));
-        account::create_account_for_test(signer::address_of(bob));
 
         let (burn_cap, mint_cap) = aptos_coin::initialize_for_test(aptos_framework);
         coin::register<AptosCoin>(alice);
-        coin::register<AptosCoin>(bob);
         coin::deposit(signer::address_of(alice), coin::mint(1000000, &mint_cap));  
-        coin::deposit(signer::address_of(bob), coin::mint(1000000, &mint_cap));  
 
         init_module(creator);
 
