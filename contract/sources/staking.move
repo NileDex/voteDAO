@@ -84,18 +84,46 @@ module my_addrx::Staking {
         let alice_resource = borrow_global<StakedBalance>(signer::address_of(alice));
         assert!(alice_resource.staked_balance == 500, 100);
 
-        // // Alice tries to stake again (should fail)
-        // stake(&alice, 500);
-
-        // // Bob tries to unstake from Alice's account (should fail)
-        // unstake(&bob, 200);
-        
         // // Alice unstakes some tokens
         unstake(alice, 200);
 
         // Check that Alice's staked balance is correct
         let alice_resource = borrow_global<StakedBalance>(signer::address_of(alice));
         assert!(alice_resource.staked_balance == 300, 100);
+
+        coin::destroy_burn_cap(burn_cap);
+        coin::destroy_mint_cap(mint_cap);
+    }
+
+    #[test(aptos_framework = @0x1, creator = @my_addrx, alice = @0x3, bob = @0x4)]
+    #[expected_failure(abort_code = EINVALID_UNSTAKE_AMOUNT, location = Self)]
+    public entry fun test_block_unstake_limit(aptos_framework: &signer, creator: &signer, alice: &signer, bob: &signer) acquires StakedBalance, Vault {
+        let (burn_cap, mint_cap) = setup_test(aptos_framework, creator, alice, bob);
+
+        // Alice stakes some tokens
+        stake(alice, 500);
+        
+        // Unstake twice up to the limit
+        unstake(alice, 400);
+        unstake(alice, 100);
+
+        // Unstake more than the limit
+        unstake(alice, 100);
+
+        coin::destroy_burn_cap(burn_cap);
+        coin::destroy_mint_cap(mint_cap);
+    }
+
+    #[test(aptos_framework = @0x1, creator = @my_addrx, alice = @0x3, bob = @0x4)]
+    #[expected_failure(abort_code = EALREADY_STAKED, location = Self)]
+    public entry fun test_should_only_stake_once(aptos_framework: &signer, creator: &signer, alice: &signer, bob: &signer) {
+        let (burn_cap, mint_cap) = setup_test(aptos_framework, creator, alice, bob);
+
+        // Alice stakes some tokens
+        stake(alice, 500);
+
+        // Alice stakes again, should fail (WHY????)
+        stake(alice, 100);
 
         coin::destroy_burn_cap(burn_cap);
         coin::destroy_mint_cap(mint_cap);
