@@ -62,6 +62,12 @@ module my_addrx::Staking {
         object::create_object_address(&@my_addrx, VAULT_SEED)
     }
 
+    #[view]
+    public fun get_staked_balance(addr: address): u64 acquires StakedBalance {
+        let staked_balance = borrow_global<StakedBalance>(addr);
+        staked_balance.staked_balance
+    }
+
     // ================================= Helper functions ================================== //
     fun get_vault_signer(): signer acquires Vault {
         let vault = borrow_global<Vault>(get_vault_addr());
