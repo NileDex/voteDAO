@@ -1,78 +1,10 @@
-module my_addrx::BasicTokens{
-    use std::error;
-    use std::signer;
-
-    /// Error codes
-    const ENOT_MODULE_OWNER: u64 = 0;
-    const EINSUFFICIENT_BALANCE: u64 = 1;
-    const EALREADY_HAS_BALANCE: u64 = 2;
-    const EALREADY_INITIALIZED: u64 = 3;
-    const EEQUAL_ADDR: u64 = 4;
-
-    struct Coin has store,drop {
-        value: u64
-    }
-
-    struct Balance has key {
-        coin: Coin
-    }
-
-    public fun createCoin(v:u64): Coin
-    {
-        let coin = Coin {
-            value:v
-        };
-        return coin
-    }
-
-
-    public fun publish_balance(account: &signer) {
-        let empty_coin = Coin { value: 0 };
-        assert!(!exists<Balance>(signer::address_of(account)), error::already_exists(EALREADY_HAS_BALANCE));
-        move_to(account, Balance { coin:  empty_coin });
-    }
-
-    public fun mint<CoinType: drop>(mint_addr: address, amount: u64) acquires Balance {
-        deposit(mint_addr, Coin{ value: amount });
-    }
-
-    public fun burn(burn_addr: address, amount: u64) acquires Balance {
-        let Coin { value: _ } = withdraw(burn_addr, amount);
-    }
-
-    public fun balance_of(owner: address): u64 acquires Balance {
-        borrow_global<Balance>(owner).coin.value
-    }
-
-
-    public fun transfer(from: &signer, to: address, amount: u64) acquires Balance {
-        let from_addr = signer::address_of(from);
-        assert!(from_addr != to, EEQUAL_ADDR);
-        let check = withdraw(from_addr, amount);
-        deposit(to, check);
-    }
-
-    public fun withdraw(addr: address, amount: u64) : Coin acquires Balance {
-        let balance = balance_of(addr);
-        assert!(balance >= amount, EINSUFFICIENT_BALANCE);
-        let balance_ref = &mut borrow_global_mut<Balance>(addr).coin.value;
-        *balance_ref = balance - amount;
-        Coin { value: amount }
-    }
-
-    public fun deposit(addr: address, check: Coin) acquires Balance{
-        let balance = balance_of(addr);
-        let balance_ref = &mut borrow_global_mut<Balance>(addr).coin.value;
-        let Coin { value } = check;
-        *balance_ref = balance + value;
-    }
-
-}
-
-
 module my_addrx::Staking { 
     use std::signer;
-    use aptos_framework::account;
+    use aptos_framework::object;
+    use aptos_framework::aptos_account;
+    use aptos_framework::coin;
+    use aptos_framework::aptos_coin::{Self, AptosCoin};
+
     /// Error codes
     const EINSUFFICIENT_STAKE: u64 = 0;
     const EALREADY_STAKED: u64 = 1;
@@ -80,66 +12,76 @@ module my_addrx::Staking {
     const EINVALID_REWARD_AMOUNT: u64 = 3;
     const EINVALID_APY: u64 = 4;
     const EINSUFFICIENT_BALANCE: u64 = 5;
-    const DEFAULT_APY:u64 = 1000;//10% APY per year
+
+    const VAULT_SEED: vector<u8> = b"VAULT";
 
     struct StakedBalance has store, key {
         staked_balance: u64,
-
     }
 
-    public fun stake(acc_own: &signer,amount: u64) {
+    struct Vault has key {
+        extend_ref: object::ExtendRef,
+    }
+
+    fun init_module(sender: &signer) {
+        let vault_constructor_ref = &object::create_named_object(sender, VAULT_SEED);
+        let vault_signer = &object::generate_signer(vault_constructor_ref);
+
+        move_to(vault_signer, Vault {
+            extend_ref: object::generate_extend_ref(vault_constructor_ref),
+        });
+    }
+
+    // ================================= Entry Functions ================================== //
+
+    public entry fun stake(acc_own: &signer,amount: u64) {
         let from = signer::address_of(acc_own);
-        let balance = my_addrx::BasicTokens::balance_of(from);
+        let balance = coin::balance<AptosCoin>(from);
         assert!(balance >= amount, EINSUFFICIENT_BALANCE);
         assert!(!exists<StakedBalance>(from), EALREADY_STAKED);
-        my_addrx::BasicTokens::withdraw(from, amount);
+        aptos_account::transfer(acc_own, get_vault_addr(), amount);
         let staked_balance = StakedBalance {
             staked_balance: amount
         };
         move_to(acc_own, staked_balance);
     }
 
-    public fun unstake(acc_own: &signer,amount: u64) acquires StakedBalance {
+    public entry fun unstake(acc_own: &signer,amount: u64) acquires StakedBalance, Vault {
         let from = signer::address_of(acc_own);
         let staked_balance = borrow_global_mut<StakedBalance>(from);
         let staked_amount = staked_balance.staked_balance;
         assert!(staked_amount >= amount, EINVALID_UNSTAKE_AMOUNT);
-        let coins = my_addrx::BasicTokens::createCoin(staked_amount);
-        my_addrx::BasicTokens::deposit(from, coins);
+        aptos_account::transfer(&get_vault_signer(), from, amount);
         staked_balance.staked_balance = staked_balance.staked_balance - amount;
     }
 
-    public fun claim_rewards(acc_own: &signer) acquires StakedBalance {
-        let from = signer::address_of(acc_own);
-        let staked_balance = borrow_global_mut<StakedBalance>(from);
-        let staked_amount = staked_balance.staked_balance;
-        assert!(staked_amount > 0, EINSUFFICIENT_STAKE);
-        let apy = DEFAULT_APY;
-        let reward_amount = (staked_amount * apy) / (10000);
-        let coins = my_addrx::BasicTokens::createCoin(reward_amount);
-        my_addrx::BasicTokens::deposit(from, coins);
+    // ================================= View Functions ================================== //
+
+    #[view]
+    public fun get_vault_addr(): address {
+        object::create_object_address(&@my_addrx, VAULT_SEED)
     }
 
-    #[test(alice=@0x11,bob=@0x2)]
-    public entry fun test_staking(alice : signer, bob : signer)  acquires StakedBalance{
+    // ================================= Helper functions ================================== //
+    fun get_vault_signer(): signer acquires Vault {
+        let vault = borrow_global<Vault>(get_vault_addr());
+        object::generate_signer_for_extending(&vault.extend_ref)
+    }
 
-        account::create_account_for_test(signer::address_of(&alice));
-        account::create_account_for_test(signer::address_of(&bob));
+    #[test_only]
+    use aptos_framework::account;
+    #[test_only]
+    use aptos_framework::coin::{BurnCapability, MintCapability};
 
-        // Publish balance for Alice and Bob
-        my_addrx::BasicTokens::publish_balance(&alice);
-        my_addrx::BasicTokens::publish_balance(&bob);
-
-        // Mint some tokens to Alice
-        my_addrx::BasicTokens::mint<my_addrx::BasicTokens::Coin>(signer::address_of(&bob), 1000);
-        my_addrx::BasicTokens::mint<my_addrx::BasicTokens::Coin>(signer::address_of(&alice), 1000);
+    #[test(aptos_framework = @0x1, creator = @my_addrx, alice = @0x3, bob = @0x4)]
+    public entry fun test_staking(aptos_framework: &signer, creator: &signer, alice: &signer, bob: &signer) acquires StakedBalance, Vault {
+        let (burn_cap, mint_cap) = setup_test(aptos_framework, creator, alice, bob);
 
         // Alice stakes some tokens
-        stake(&alice, 500);
+        stake(alice, 500);
         
-
         // Check that Alice's staked balance is correct
-        let alice_resource = borrow_global<StakedBalance>(signer::address_of(&alice));
+        let alice_resource = borrow_global<StakedBalance>(signer::address_of(alice));
         assert!(alice_resource.staked_balance == 500, 100);
 
         // // Alice tries to stake again (should fail)
@@ -149,16 +91,31 @@ module my_addrx::Staking {
         // unstake(&bob, 200);
         
         // // Alice unstakes some tokens
-        unstake(&alice, 200);
+        unstake(alice, 200);
 
         // Check that Alice's staked balance is correct
-        let alice_resource = borrow_global<StakedBalance>(signer::address_of(&alice));
+        let alice_resource = borrow_global<StakedBalance>(signer::address_of(alice));
         assert!(alice_resource.staked_balance == 300, 100);
 
-        // // Alice claims rewards
-        claim_rewards(&alice);
+        coin::destroy_burn_cap(burn_cap);
+        coin::destroy_mint_cap(mint_cap);
     }
 
+    #[test_only]
+    fun setup_test(aptos_framework: &signer, creator: &signer, alice: &signer, bob: &signer): (BurnCapability<AptosCoin>, MintCapability<AptosCoin>) {
+        account::create_account_for_test(signer::address_of(alice));
+        account::create_account_for_test(signer::address_of(bob));
+
+        let (burn_cap, mint_cap) = aptos_coin::initialize_for_test(aptos_framework);
+        coin::register<AptosCoin>(alice);
+        coin::register<AptosCoin>(bob);
+        coin::deposit(signer::address_of(alice), coin::mint(1000000, &mint_cap));  
+        coin::deposit(signer::address_of(bob), coin::mint(1000000, &mint_cap));  
+
+        init_module(creator);
+
+        (burn_cap, mint_cap)
+    }
 }
 
 
