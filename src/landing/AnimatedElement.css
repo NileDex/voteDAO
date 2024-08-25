@@ -11,7 +11,7 @@ body {
 .animated-element1 {
   display: flex;
   border-radius: 10px 10px 0 0;
-  background: rgba(7, 7, 7, 0.628);
+  /* background: rgba(7, 7, 7, 0.628); */
   align-items: center;
   height: 70vh;
   justify-content: center;

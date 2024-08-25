@@ -71,13 +71,13 @@ const Proposals = () => {
             {filteredProposals.map((proposal) => (
               <tr key={proposal.id}>
                 <td className="link">
-                  <Link to={proposal.link}>{proposal.id}.</Link>
+                  {proposal.id}.
                 </td>
                 <td>
-                  <Link to={proposal.link}>{proposal.topic}</Link>
+                  {proposal.topic}
                 </td>
                 <td>
-                  <button>
+                  <button className="prior-plan">
                     <Link to={proposal.link}>
                       <p>Vote Here</p>
                     </Link>

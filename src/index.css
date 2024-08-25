@@ -67,6 +67,23 @@ body.dark {
   font-size: 15px;
   font-weight: bold;
 }
+.pp{
+  display: flex;
+  font-size: 5px;
+}
+.prior-plan{
+  display: flex;
+  justify-content: center;
+  font-size: 8px;
+  padding: 0px 20px;
+  background-color: #443300;
+  color: #fff;
+  border-radius: 13px;
+  margin-right: 8px;
+  font-size: 10px;
+  font-weight: bold;
+  border: none;
+}
 .prior:hover {
   background: rgb(0, 0, 0);
   color: #ffda34;
@@ -207,6 +224,18 @@ body.dark {
 .vdata-info h3 {
   text-align: center;
   font-size: 17px;
+}
+.after-connect{
+  margin: 0;
+  width: 400px;
+  padding: 10px 2px;
+  background-color: #443300;
+  color: #fff;
+  border-radius: 13px;
+  font-size: 15px;
+  font-weight: bold;
+  border: none;
+  margin: 2px 0;
 }
 /* .vdata-info-button{
   padding: 18px 15px ;

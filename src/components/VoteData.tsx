@@ -64,13 +64,28 @@ const Votedata = () => {
           Connect your wallet below to lock MOVE and vote on Proposals & LFG!
         </h3>
         <input className="inputfield" placeholder="MOVE" ref={amountRef} />
-        {!account?.address && <AptosConnectButton className="whit" />}
+        {/* {!account?.address && <AptosConnectButton className="whit" />} */}
+        {!account?.address && (
+          <AptosConnectButton
+            className="whit"
+            style={{
+              margin: "0",
+              width: "400px",
+              padding: "13px 2px",
+              backgroundColor: "#443300",
+              color: "#fff",
+              borderRadius: "13px",
+              fontSize: "15px",
+              fontWeight: "bold",
+            }}
+          />
+        )}
         {account?.address && (
           <>
-            <button type="button" onClick={() => stakeMove()}>
+            <button type="button" className="after-connect" onClick={() => stakeMove()}>
               Stake
             </button>
-            <button type="button" onClick={() => unstakeMove()}>
+            <button type="button" className="after-connect" onClick={() => unstakeMove()}>
               Unstake
             </button>
           </>
