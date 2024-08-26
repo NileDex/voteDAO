@@ -42,7 +42,7 @@ const Navbar = () => {
         </div>
         <div>
           <img
-            alt=""
+            alt="voting"
             className="votinglogo"
             src="https://www.billboard.com/wp-content/uploads/2024/06/vote-badge-illo-billboard-1548.jpg?w=942&h=623&crop=1"
           />
@@ -66,18 +66,19 @@ const Navbar = () => {
           </li>
         </ol>
         <div className="natureicons">
-          <GrStakeholder className="natureicons1"/>
-          <FaArrowRight className="natureicons2"/>
-          <ImPower className="natureicons1"/>
+          <GrStakeholder className="natureicons1" />
           <FaArrowRight className="natureicons2" />
-          <MdHowToVote className="natureicons1"/>
+          <ImPower className="natureicons1" />
+          <FaArrowRight className="natureicons2" />
+          <MdHowToVote className="natureicons1" />
           <div>
-          <p>Stake</p>
-          <p>Power</p>
-          <p>Vote</p>
+            <p>Stake</p>
+            <p>Power</p>
+            <p>Vote</p>
           </div>
         </div>
       </div>
+
       <div className="carddd">
         <div className="meet-the-team">
           <p>Meet The Team</p>
@@ -87,17 +88,19 @@ const Navbar = () => {
             profileImg="https://pbs.twimg.com/profile_images/1818184363688800256/Cp6wpmkK_400x400.jpg"
             username="Integrated | Nile_Dex | Movement"
             description="Nft collection Creator/Designer, Learning to code.🍌🦍"
-            CO-FOUNDER
-            // following={180}
-            // power="320 Power"
+            CO-FOUNDER={true}
+            followers={200}
+            following={180}
+            power="320 Power"
           />
           <Card
             profileImg="https://pbs.twimg.com/profile_images/1825500712727429120/1ZMyBV0L_400x400.jpg"
             username="Urs Lee | INTEGRATED 🦍⚡"
             description="@ursleee Dev | @GorillaMoverz and @movementlabsxyz Apes together strong! 🍌🦍"
-            CO-FOUNDER
-            // following={180}
-            // power="320 Power"
+            CO-FOUNDER={true}
+            followers={150}
+            following={180}
+            power="320 Power"
           />
         </div>
       </div>
