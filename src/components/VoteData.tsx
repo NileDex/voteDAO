@@ -4,7 +4,6 @@ import "@razorlabs/wallet-kit/style.css";
 import { AptosConnectButton } from "@razorlabs/wallet-kit";
 import { useAptosWallet } from "@razorlabs/wallet-kit";
 import { useStake } from "./useStake";
-import { MODULE_ADDRESS } from "../constants";
 import { useRef } from "react";
 import { createEntryPayload } from "@thalalabs/surf";
 import { ABI as StakingABI } from "../services/Staking.ts";
@@ -34,10 +33,11 @@ const Votedata = () => {
     const amount = parseFloat(amountRef.current?.value || "0");
 
     await signAndSubmitTransaction({
-      payload: {
-        function: `${MODULE_ADDRESS}::Staking::unstake`,
+      payload: createEntryPayload(StakingABI, {
+        function: `unstake`,
+        typeArguments: [],
         functionArguments: [(amount * Math.pow(10, 8)).toString()],
-      },
+      }),
     });
 
     setTimeout(() => refetchStake(), 5000);
