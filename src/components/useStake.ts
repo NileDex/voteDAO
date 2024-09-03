@@ -1,7 +1,6 @@
 import { useAptosWallet } from "@razorlabs/wallet-kit";
 import { useQuery } from "@tanstack/react-query";
-import movementClient from "../services/movement-client";
-import { MODULE_ADDRESS } from "../constants";
+import { stakingClient } from "../services/movement-client";
 
 export function useStake() {
   const { account } = useAptosWallet();
@@ -14,11 +13,9 @@ export function useStake() {
         return 0;
       }
       try {
-        const response = await movementClient.view<[string]>({
-          payload: {
-            function: `${MODULE_ADDRESS}::Staking::get_staked_balance`,
-            functionArguments: [account?.address],
-          },
+        const response = await stakingClient.view.get_staked_balance({
+          typeArguments: [],
+          functionArguments: [account?.address as `0x${string}`],
         });
 
         const result = parseInt(response[0]);
