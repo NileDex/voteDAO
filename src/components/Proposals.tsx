@@ -1,43 +1,16 @@
 import { useState } from "react";
 import "../App.css";
 import { Link } from "react-router-dom";
+import { useVotes } from "./useVotes";
 
 const Proposals = () => {
   const [filter, setFilter] = useState("");
+  const { data: votes } = useVotes();
 
-  const proposals = [
-    {
-      id: 1,
-      topic: "Who Should be MoveDAO President",
-      start: "06/07",
-      end: "10/07",
-      project: "Movement",
-      status: "Pending",
-      link: "../vote",
-    },
-    {
-      id: 2,
-      topic: "Proposal for New Tokenomics",
-      start: "08/07",
-      end: "12/07",
-      project: "Tokenomics",
-      status: "Approved",
-      link: "/vote2",
-    },
-    {
-      id: 3,
-      topic: "Proposal for New Movement, Youtube Show",
-      start: "08/07",
-      end: "12/07",
-      project: "Social",
-      status: "Approved",
-      link: "/vote3",
-    },
-    // Add more proposals here
-  ];
+  if (!votes) return null;
 
-  const filteredProposals = proposals.filter((proposal) =>
-    proposal.topic.toLowerCase().includes(filter.toLowerCase())
+  const filteredProposals = votes.filter((proposal) =>
+    proposal.title.toLowerCase().includes(filter.toLowerCase())
   );
 
   return (
@@ -63,30 +36,30 @@ const Proposals = () => {
               <th></th>
               <th>Start</th>
               <th>End</th>
-              <th>Project</th>
-              <th>Status</th>
+              <th>Yes Votes</th>
+              <th>No Votes</th>
             </tr>
           </thead>
           <tbody>
             {filteredProposals.map((proposal) => (
               <tr key={proposal.id}>
-                <td className="link">
-                  {proposal.id}.
-                </td>
-                <td>
-                  {proposal.topic}
-                </td>
+                <td className="link">{proposal.id}.</td>
+                <td>{proposal.title}</td>
                 <td>
                   <button className="prior-plan">
-                    <Link to={proposal.link}>
+                    <Link to={`/vote?id=${proposal.id}`}>
                       <p>Vote Here</p>
                     </Link>
                   </button>
                 </td>
-                <td>{proposal.start}</td>
-                <td>{proposal.end}</td>
-                <td>{proposal.project}</td>
-                <td>{proposal.status}</td>
+                <td>{proposal.start_time}</td>
+                <td>{proposal.end_time}</td>
+                <td>
+                  {parseInt(proposal.total_yes_votes) / Math.pow(10, 8)} MOVE
+                </td>
+                <td>
+                  {parseInt(proposal.total_no_votes) / Math.pow(10, 8)} MOVE
+                </td>
               </tr>
             ))}
           </tbody>
