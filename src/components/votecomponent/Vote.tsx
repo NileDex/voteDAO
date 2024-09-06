@@ -2,9 +2,53 @@ import { ChangeEvent, useState } from "react";
 import Header from "../Header";
 import { IoChevronBackOutline } from "react-icons/io5";
 import { Link } from "react-router-dom";
+import { createEntryPayload } from "@thalalabs/surf";
+import { ABI as StakingABI } from "../../services/Staking.ts";
+import { useAptosWallet } from "@razorlabs/wallet-kit";
+import { useStake } from "../useStake";
 
 const Move = () => {
   const [selectedOption, setSelectedOption] = useState("");
+  const { signAndSubmitTransaction } = useAptosWallet();
+  const { data: stake } = useStake();
+
+  if (!stake) return null;
+
+  function dateToSeconds(date: Date) {
+    const dateInSeconds = Math.floor(+date / 1000);
+    return dateInSeconds;
+  }
+
+  // Only admin can create a vote
+  const createVote = async () => {
+    const payload = createEntryPayload(StakingABI, {
+      function: "create_vote",
+      typeArguments: [],
+      functionArguments: [
+        "Vote Question 2",
+        "Vote Description 2",
+        dateToSeconds(new Date(2024, 1, 1)),
+        dateToSeconds(new Date(2025, 1, 1)),
+      ],
+    });
+
+    await signAndSubmitTransaction({
+      payload,
+    });
+  };
+
+  const vote = async (yes: boolean) => {
+    const voteId = 1;
+    const payload = createEntryPayload(StakingABI, {
+      function: "vote",
+      typeArguments: [],
+      functionArguments: [voteId, (stake * Math.pow(10, 8)).toString(), yes],
+    });
+
+    await signAndSubmitTransaction({
+      payload,
+    });
+  };
 
   const handleOptionChange = (event: ChangeEvent<HTMLInputElement>) => {
     setSelectedOption(event.target.value);
@@ -54,7 +98,24 @@ const Move = () => {
                 Coop
               </label>
             </section>
-            <button className="votebtn">VOTE</button>
+            <button className="votebtn" type="button" onClick={createVote}>
+              Create Vote
+            </button>
+
+            <button
+              className="votebtn"
+              type="button"
+              onClick={() => vote(true)}
+            >
+              Vote yes
+            </button>
+            <button
+              className="votebtn"
+              type="button"
+              onClick={() => vote(false)}
+            >
+              Vote no
+            </button>
           </form>
         </div>
         <div className="votedescription">
