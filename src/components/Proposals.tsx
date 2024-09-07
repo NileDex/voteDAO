@@ -13,6 +13,17 @@ const Proposals = () => {
     proposal.title.toLowerCase().includes(filter.toLowerCase())
   );
 
+  const formatDate = (timestamp) => {
+    const date = new Date(timestamp * 1000); // Convert seconds to milliseconds
+    return date.toLocaleDateString("en-US", {
+      year: "numeric",
+      month: "long",
+      day: "numeric",
+      hour: "2-digit",
+      minute: "2-digit",
+    });
+  };
+
   return (
     <div className="proposal">
       <div className="proposal-filter">
@@ -52,8 +63,8 @@ const Proposals = () => {
                     </Link>
                   </button>
                 </td>
-                <td>{proposal.start_time}</td>
-                <td>{proposal.end_time}</td>
+                <td>{formatDate(proposal.start_time)}</td>
+                <td>{formatDate(proposal.end_time)}</td>
                 <td>
                   {parseInt(proposal.total_yes_votes) / Math.pow(10, 8)} MOVE
                 </td>
@@ -63,6 +74,7 @@ const Proposals = () => {
               </tr>
             ))}
           </tbody>
+          
         </table>
       </div>
     </div>

@@ -4,14 +4,30 @@ import "@razorlabs/wallet-kit/style.css";
 import { AptosConnectButton } from "@razorlabs/wallet-kit";
 import { useAptosWallet } from "@razorlabs/wallet-kit";
 import { useStake } from "./useStake";
-import { useRef } from "react";
+import { useRef, useState } from "react";
 import { createEntryPayload } from "@thalalabs/surf";
 import { ABI as StakingABI } from "../services/Staking.ts";
+import Modal from "./Modal";  // Import the Modal component
 
 const Votedata = () => {
   const { data: stake, refetch: refetchStake } = useStake();
   const { account, signAndSubmitTransaction } = useAptosWallet();
   const amountRef = useRef<HTMLInputElement>(null);
+
+  // State for controlling modal visibility and message
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [modalMessage, setModalMessage] = useState("");
+
+  // Function to open modal with a specific message
+  const openModal = (message: string) => {
+    setModalMessage(message);
+    setIsModalOpen(true);
+  };
+
+  // Function to close modal
+  const closeModal = () => {
+    setIsModalOpen(false);
+  };
 
   async function stakeMove() {
     const amount = parseFloat(amountRef.current?.value || "0");
@@ -22,16 +38,22 @@ const Votedata = () => {
       functionArguments: [(amount * Math.pow(10, 8)).toString()],
     });
 
+    openModal("Staking in progress...");
     await signAndSubmitTransaction({
       payload,
     });
+    openModal("Staked successfully!");
 
-    setTimeout(() => refetchStake(), 5000);
+    setTimeout(() => {
+      refetchStake();
+      closeModal();
+    }, 5000);
   }
 
   async function unstakeMove() {
     const amount = parseFloat(amountRef.current?.value || "0");
 
+    openModal("Unstaking in progress...");
     await signAndSubmitTransaction({
       payload: createEntryPayload(StakingABI, {
         function: `unstake`,
@@ -39,8 +61,12 @@ const Votedata = () => {
         functionArguments: [(amount * Math.pow(10, 8)).toString()],
       }),
     });
+    openModal("Unstaked successfully!");
 
-    setTimeout(() => refetchStake(), 5000);
+    setTimeout(() => {
+      refetchStake();
+      closeModal();
+    }, 5000);
   }
 
   return (
@@ -52,7 +78,7 @@ const Votedata = () => {
             <ImPower />
           </span>
         </div>
-        <h3>Lock MOVE tokens to receive your voting power. Learn more</h3>
+        <h3>Lock MOVE tokens to receive your voting power. <a href="https://movedao-1.gitbook.io/movedao/">Learn more</a></h3>
       </div>
 
       <div className="vdata-info">
@@ -69,7 +95,6 @@ const Votedata = () => {
           Connect your wallet below to lock MOVE and vote on Proposals & LFG!
         </h3>
         <input className="inputfield" placeholder="MOVE" ref={amountRef} />
-        {/* {!account?.address && <AptosConnectButton className="whit" />} */}
         {!account?.address && (
           <AptosConnectButton
             className="whit"
@@ -87,15 +112,20 @@ const Votedata = () => {
         )}
         {account?.address && (
           <>
-            <button type="button" className="after-connect" onClick={() => stakeMove()}>
+            <button type="button" className="after-connect" onClick={stakeMove}>
               Stake
             </button>
-            <button type="button" className="after-connect" onClick={() => unstakeMove()}>
+            <button type="button" className="after-connect" onClick={unstakeMove}>
               Unstake
             </button>
           </>
         )}
       </div>
+
+      {/* Modal Component */}
+      <Modal isOpen={isModalOpen} onClose={closeModal}>
+        {modalMessage}
+      </Modal>
     </div>
   );
 };

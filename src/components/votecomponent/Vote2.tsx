@@ -2,9 +2,53 @@ import { ChangeEvent, useState } from "react";
 import Header from "../Header";
 import { IoChevronBackOutline } from "react-icons/io5";
 import { Link } from "react-router-dom";
+import { createEntryPayload } from "@thalalabs/surf";
+import { ABI as StakingABI } from "../../services/Staking.ts";
+import { useAptosWallet } from "@razorlabs/wallet-kit";
+import { useStake } from "../useStake";
 
-const Move2 = () => {
+const Moveu = () => {
   const [selectedOption, setSelectedOption] = useState("");
+  const { signAndSubmitTransaction } = useAptosWallet();
+  const { data: stake } = useStake();
+
+  if (!stake) return null;
+
+  function dateToSeconds(date: Date) {
+    const dateInSeconds = Math.floor(+date / 100);
+    return dateInSeconds;
+  }
+
+  // Only admin can create a vote
+  const createVote = async () => {
+    const payload = createEntryPayload(StakingABI, {
+      function: "create_vote",
+      typeArguments: [],
+      functionArguments: [
+        "Vote Question 2",
+        "Vote Description 2",
+        dateToSeconds(new Date(2025, 3, 1)),
+        dateToSeconds(new Date(2025, 4, 1)),
+      ],
+    });
+
+    await signAndSubmitTransaction({
+      payload,
+    });
+  };
+
+  const vote = async (yes: boolean) => {
+    const voteId = 1;
+    const payload = createEntryPayload(StakingABI, {
+      function: "vote",
+      typeArguments: [],
+      functionArguments: [voteId, (stake * Math.pow(10, 8)).toString(), yes],
+    });
+
+    await signAndSubmitTransaction({
+      payload,
+    });
+  };
 
   const handleOptionChange = (event: ChangeEvent<HTMLInputElement>) => {
     setSelectedOption(event.target.value);
@@ -14,7 +58,9 @@ const Move2 = () => {
     <div>
       <Header />
       <div className="back">
-        <Link to="/">
+        <Link to="/main">
+          {" "}
+          {/* Update the link to point to the main dApp page */}
           <span className="backicon">
             <IoChevronBackOutline />
           </span>
@@ -23,7 +69,7 @@ const Move2 = () => {
       <div className="votequestion">
         <h4>Proposal / Governance</h4>
         <h1>Vote Question</h1>
-        <h3>Proposal for New Tokenomics</h3>
+        <h3>Who Should be Move DAO President</h3>
       </div>
       <div className="answer-container">
         <div className="voteanswer">
@@ -32,27 +78,44 @@ const Move2 = () => {
               <label className="custom-radio">
                 <input
                   type="radio"
-                  value="Rushi"
+                  value="yes"
                   checked={selectedOption === "yes"}
                   onChange={handleOptionChange}
                 />
                 <span className="checkmark"></span>
-                Create a new Tokenomics for MoveDAO
+                Russhi
               </label>
             </section>
             <section>
               <label className="custom-radio">
                 <input
                   type="radio"
-                  value="Coop"
+                  value="no"
                   checked={selectedOption === "no"}
                   onChange={handleOptionChange}
                 />
                 <span className="checkmark"></span>
-                Wait till launch
+                Coop
               </label>
             </section>
-            <button className="votebtn">VOTE</button>
+            <button className="votebtn" type="button" onClick={createVote}>
+              Create Vote
+            </button>
+
+            <button
+              className="votebtn"
+              type="button"
+              onClick={() => vote(true)}
+            >
+              Vote yes
+            </button>
+            <button
+              className="votebtn"
+              type="button"
+              onClick={() => vote(false)}
+            >
+              Vote no
+            </button>
           </form>
         </div>
         <div className="votedescription">
@@ -72,4 +135,4 @@ const Move2 = () => {
   );
 };
 
-export default Move2;
+export default Moveu;
