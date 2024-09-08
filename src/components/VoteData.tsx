@@ -9,6 +9,7 @@ import { createEntryPayload } from "@thalalabs/surf";
 import { ABI as StakingABI } from "../services/Staking.ts";
 import Modal from "./Modal";  // Import the Modal component
 
+
 const Votedata = () => {
   const { data: stake, refetch: refetchStake } = useStake();
   const { account, signAndSubmitTransaction } = useAptosWallet();
@@ -111,14 +112,51 @@ const Votedata = () => {
           />
         )}
         {account?.address && (
+          // <>
+          //   <button type="button" className="after-connect" onClick={stakeMove}>
+          //     Stake
+          //   </button>
+          //   <button type="button" className="after-connect" onClick={unstakeMove}>
+          //     Unstake
+          //   </button>
+          // </>
           <>
-            <button type="button" className="after-connect" onClick={stakeMove}>
-              Stake
-            </button>
-            <button type="button" className="after-connect" onClick={unstakeMove}>
-              Unstake
-            </button>
-          </>
+  <button
+    type="button"
+    style={{
+      width: '100%',
+      padding: '10px 2px',
+      backgroundColor: '#430',
+      color: '#fff',
+      borderRadius: '13px',
+      fontSize: '15px',
+      fontWeight: '700',
+      border: 'none',
+      margin: '2px 0',
+    }}
+    onClick={stakeMove}
+  >
+    Stake
+  </button>
+  <button
+    type="button"
+    style={{
+      width: '100%',
+      padding: '10px 2px',
+      backgroundColor: '#430',
+      color: '#fff',
+      borderRadius: '13px',
+      fontSize: '15px',
+      fontWeight: '700',
+      border: 'none',
+      margin: '2px 0',
+    }}
+    onClick={unstakeMove}
+  >
+    Unstake
+  </button>
+</>
+
         )}
       </div>
 

@@ -172,15 +172,16 @@ body.dark {
   align-items: center;
   justify-content: center;
   padding: 20px 10px;
-  display: flex;
-  border: 1.5px solid rgb(172, 172, 172);
+  border: 1.5px solid rgba(255, 255, 255, 0.2); /* Lighter, semi-transparent border */
   margin: auto;
   margin-bottom: 15px;
   width: 800px;
   margin-top: 20px;
   border-radius: 15px;
-  background: rgb(39, 39, 39);
-  background-size: cover;
+  background: rgba(39, 39, 39, 0.3); /* Semi-transparent dark background */
+  backdrop-filter: blur(10px); /* Blur effect */
+  -webkit-backdrop-filter: blur(10px); /* For Safari */
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2); /* Subtle shadow for depth */
   color: #fff;
 }
 
@@ -246,6 +247,7 @@ body.dark {
   border: 1.5px solid #fff;
   font-family: inherit;
 } */
+ 
 .vdata-info-one p {
   font-size: 40px;
 }
@@ -510,7 +512,15 @@ body.dark {
     flex-direction: column;
     margin-right: auto;
     margin-left: auto;
+    padding: 20px; /* Add some padding to give it a nice layout */
+    background: rgba(255, 255, 255, 0.1); /* Semi-transparent background */
+    border-radius: 15px; /* Rounded corners */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+    backdrop-filter: blur(10px); /* Blur effect */
+    -webkit-backdrop-filter: blur(10px); /* For Safari */
+    border: 1px solid rgba(255, 255, 255, 0.2); /* Light border */
   }
+  
   .vdata-info {
     width: 280px;
     margin: 20px;

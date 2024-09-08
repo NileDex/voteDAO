@@ -119,6 +119,7 @@ a:focus {
   animation: logoAppear 1s forwards;
 }
 
+
 /* Animation keyframes for logo */
 @keyframes logoAppear {
   to {
