@@ -53,6 +53,10 @@ body.dark {
   margin-left: 15px;
   width: 250px;
 }
+.logo .mobile-logo{
+  display: none;
+
+}
 .headerspecial {
   display: flex;
   align-items: center;
@@ -467,8 +471,13 @@ body.dark {
     margin-right: 3px;
   }
   .logo img {
-    width: 130px;
-    margin: 0;
+    display: none;
+   
+  }
+  .logo .mobile-logo{
+    display: flex;
+    width: 100px;
+    margin: 0 10px;
     padding: 0;
   }
   .prior {

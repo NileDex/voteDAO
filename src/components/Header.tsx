@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import logo from "./images/logo.png";
+import Mobile from "./images/Mobile.png";
 import { IoSettingsOutline } from "react-icons/io5";
 import ThemeToggle from "./ThemeToggle";
 import { AptosConnectButton } from "@razorlabs/wallet-kit";
@@ -37,6 +38,7 @@ const Header = () => {
     <div className={`header ${isHidden ? "hidden" : ""}`}>
       <div className="logo">
         <img src={logo} alt="logo" />
+        <img className="mobile-logo" src={Mobile} alt="logo" />
       </div>
       <div className="headerspecial">
         <p className="prior">Priority: Fast</p>
