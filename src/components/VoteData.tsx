@@ -7,8 +7,7 @@ import { useStake } from "./useStake";
 import { useRef, useState } from "react";
 import { createEntryPayload } from "@thalalabs/surf";
 import { ABI as StakingABI } from "../services/Staking.ts";
-import Modal from "./Modal";  // Import the Modal component
-
+import Modal from "./Modal"; // Import the Modal component
 
 const Votedata = () => {
   const { data: stake, refetch: refetchStake } = useStake();
@@ -79,7 +78,10 @@ const Votedata = () => {
             <ImPower />
           </span>
         </div>
-        <h3>Lock MOVE tokens to receive your voting power. <a href="https://movedao-1.gitbook.io/movedao/">Learn more</a></h3>
+        <h3>
+          Lock MOVE tokens to receive your voting power.{" "}
+          <a href="https://movedao-1.gitbook.io/movedao/">Learn more</a>
+        </h3>
       </div>
 
       <div className="vdata-info">
@@ -101,13 +103,15 @@ const Votedata = () => {
             className="whit"
             style={{
               margin: "0",
-              width: "400px",
-              padding: "13px 2px",
+              width: "100%", // Makes the button take full width of its container
+              maxWidth: "400px", // Limits the maximum width to 400px
+              padding: "10px 5px", // Adjusted padding for responsiveness
               backgroundColor: "#443300",
               color: "#fff",
               borderRadius: "13px",
-              fontSize: "15px",
+              fontSize: "15px", // Base font size
               fontWeight: "bold",
+              boxSizing: "border-box", // Ensures padding and border are included in the total width and height
             }}
           />
         )}
@@ -121,42 +125,41 @@ const Votedata = () => {
           //   </button>
           // </>
           <>
-  <button
-    type="button"
-    style={{
-      width: '100%',
-      padding: '10px 2px',
-      backgroundColor: '#430',
-      color: '#fff',
-      borderRadius: '13px',
-      fontSize: '15px',
-      fontWeight: '700',
-      border: 'none',
-      margin: '2px 0',
-    }}
-    onClick={stakeMove}
-  >
-    Stake
-  </button>
-  <button
-    type="button"
-    style={{
-      width: '100%',
-      padding: '10px 2px',
-      backgroundColor: '#430',
-      color: '#fff',
-      borderRadius: '13px',
-      fontSize: '15px',
-      fontWeight: '700',
-      border: 'none',
-      margin: '2px 0',
-    }}
-    onClick={unstakeMove}
-  >
-    Unstake
-  </button>
-</>
-
+            <button
+              type="button"
+              style={{
+                width: "100%",
+                padding: "10px 2px",
+                backgroundColor: "#430",
+                color: "#fff",
+                borderRadius: "13px",
+                fontSize: "15px",
+                fontWeight: "700",
+                border: "none",
+                margin: "2px 0",
+              }}
+              onClick={stakeMove}
+            >
+              Stake
+            </button>
+            <button
+              type="button"
+              style={{
+                width: "100%",
+                padding: "10px 2px",
+                backgroundColor: "#430",
+                color: "#fff",
+                borderRadius: "13px",
+                fontSize: "15px",
+                fontWeight: "700",
+                border: "none",
+                margin: "2px 0",
+              }}
+              onClick={unstakeMove}
+            >
+              Unstake
+            </button>
+          </>
         )}
       </div>
 
