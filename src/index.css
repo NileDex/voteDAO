@@ -462,7 +462,7 @@ body::after {
   }
 
   .vdata-container {
-    width: 360px;
+    width: 300px;
     display: flex;
     flex-direction: column;
     
