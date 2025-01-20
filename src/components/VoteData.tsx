@@ -90,7 +90,7 @@ const Votedata = () => {
           <div className="vdata-wallet-action-flex">
             <p>
               <FaWallet />
-              <span>1</span> MOVE
+              MOVE
             </p>
           </div>
         </div>
@@ -106,12 +106,12 @@ const Votedata = () => {
               width: "100%", // Makes the button take full width of its container
               maxWidth: "400px", // Limits the maximum width to 400px
               padding: "10px 5px", // Adjusted padding for responsiveness
-              backgroundColor: "#443300",
-              color: "#fff",
+              background: 'linear-gradient(45deg, #ffc30d, #b80af7)',
               borderRadius: "13px",
               fontSize: "15px", // Base font size
               fontWeight: "bold",
               boxSizing: "border-box", // Ensures padding and border are included in the total width and height
+              border: 'none',
             }}
           />
         )}
@@ -128,15 +128,17 @@ const Votedata = () => {
             <button
               type="button"
               style={{
-                width: "100%",
-                padding: "10px 2px",
-                backgroundColor: "#430",
-                color: "#fff",
+                margin: "0",
+                width: "100%", // Makes the button take full width of its container
+                maxWidth: "400px", // Limits the maximum width to 400px
+                padding: "10px 5px", // Adjusted padding for responsiveness
+                background: 'linear-gradient(45deg, #ffc30d, #b80af7)',
                 borderRadius: "13px",
-                fontSize: "15px",
-                fontWeight: "700",
-                border: "none",
-                margin: "2px 0",
+                fontSize: "15px", // Base font size
+                fontWeight: "bold",
+                boxSizing: "border-box", // Ensures padding and border are included in the total width and height
+                border: 'none',
+                color: 'white',
               }}
               onClick={stakeMove}
             >
@@ -145,15 +147,17 @@ const Votedata = () => {
             <button
               type="button"
               style={{
-                width: "100%",
-                padding: "10px 2px",
-                backgroundColor: "#430",
-                color: "#fff",
+                margin: "15px 0",
+                width: "100%", // Makes the button take full width of its container
+                maxWidth: "400px", // Limits the maximum width to 400px
+                padding: "10px 5px", // Adjusted padding for responsiveness
+                background: 'linear-gradient(45deg, #ffc30d, #b80af7)',
                 borderRadius: "13px",
-                fontSize: "15px",
-                fontWeight: "700",
-                border: "none",
-                margin: "2px 0",
+                fontSize: "15px", // Base font size
+                fontWeight: "bold",
+                boxSizing: "border-box", // Ensures padding and border are included in the total width and height
+                border: 'none',
+                color: 'white',
               }}
               onClick={unstakeMove}
             >

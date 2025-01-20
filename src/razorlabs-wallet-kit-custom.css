@@ -1,59 +1,247 @@
 .whit {
-    width: 190px;
-    padding: 13px 0px;
-    background-color: #443300;
+    width: 180px;
+    padding: 0.65rem 1.5rem;
+    border: 1px solid #ffc30d;
     color: #fff;
-    border-radius: 40px;
-    margin-right: 8px;
-    font-size: 15px;
-    font-weight: bold;
-    margin-right: 8px;
-    margin-left: 8px;
+    border-radius: 0.375rem;
+    font-size: 13px;
+    font-weight: 700;
+    text-align: center;
+    transition: all 0.3s ease;
+    margin-left: 20px;
+    
 }
-
+.whit:hover {
+    background: linear-gradient(45deg, #ffc30d, #b80af7); /* Updated background */
+    color: black;
+}
 
 .whit,
-.whit-connected-button {
-    width: 180px;
-    padding: 13px 0px;
-    background-color: #443300;
+.whit-connected-button { 
     color: #fff;
-    border-radius: 40px;
-    margin: 0 8px;
-    font-size: 15px;
-    font-weight: bold;
 }
-
-
 
 .wkit-connected-container {
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: center;
-    background-color: #443300;
-    width: 190px;
-    border-radius: 40px;
-    padding: 0 3px;
-    margin: 0 8px;
-    box-sizing: border-box;
-    /* Ensure padding doesn't affect width */
+    color: #000000;
+    border-radius: 0.375rem;
+    font-size: 1rem;
+    font-weight: 700;
+    text-align: center;
+    transition: all 0.3s ease;
+    margin-left: 20px;
+    background: linear-gradient(45deg, #ffc30d, #b80af7); /* Updated background */
+}
+.wkit-connected-button {
+    width: 100%;
+    margin: 0;
+    padding: 0;
+}
+.wkit-connected-button__balance {
+    display: none; /* Hide the balance element */
 }
 
-.wkit-connected-button__balance,
 .wkit-address-select__address {
+    display: block; /* Ensure the address is displayed */
     font-style: normal;
     font-weight: 700;
-    font-size: 13px;
+    font-size: 10px; /* Maintain compact size */
     color: #fff;
     text-align: center;
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
-    /* Add ellipsis if text overflows */
-    width: 100%;
-    /* Ensure it takes full width inside the container */
-    box-sizing: border-box;
-    /* Ensure padding/margin doesn't affect width */
+    width: 100%; /* Ensure it takes full width inside the container */
+    box-sizing: border-box; /* Ensure padding/margin doesn't affect width */
+    background: none;
 }
 
+.wkit-address-select__address:hover {
+    color: black;
+}
+.wkit-connected-button__balance:hover {
+    color: black;
+}
+.wkit-disconnect-button_container {
+    background-color: rgba(0, 0, 0, 0);
+}
+.wkit-disconnect-button {
+    width: 100%;
+    padding: 0.65rem 1.5rem;
+    background: black;
+    color: #fff;
+    border-radius: 0.375rem;
+    font-size: 1rem;
+    font-weight: 700;
+    text-align: center;
+    transition: all 0.3s ease;
+}
+.wkit-disconnect-button:hover {
+    background: #0000007d;
+}
+
+@media (max-width: 768px) {
+    .whit,
+    .wkit-disconnect-button {
+        width: 150px;
+        font-size: 10px; /* Uniform font size */
+        padding: 0.8rem 0.8rem; /* Consistent padding */
+    }
+  
+    .wkit-connected-container {
+        width: 150px;
+        margin-left: 0; /* Remove left margin */
+        text-align: center; /* Center-align container */
+        padding: 0.0001px 0.0001px; /* Consistent padding */
+        background: linear-gradient(45deg, #ffc30d, #b80af7); /* Updated background */
+    }
+  
+    .wkit-connected-button__balance,
+    .wkit-address-select__address {
+        font-size: 10px; /* Smaller font size for compact details */
+        width: 100%;
+        text-align: center; /* Center-align text */
+        margin: 0;
+        padding: 0.8rem 0.8rem;
+    }
+  
+    .dropdown-container {
+        margin-top: 5px; /* Uniform spacing */
+        text-align: center; /* Center-align dropdown */
+    }
+    .wkit-disconnect-button_container {
+        width: 100%;
+        padding: 1px 1.5rem;
+        background-color: rgba(0, 0, 0, 0);
+        height: 10px;
+        border-radius: 0.375rem;
+        font-size: 1rem;
+        font-weight: 700;
+        text-align: center;
+        transition: all 0.3s ease;
+    }
+    .wkit-disconnect-button {
+        width: 100%;
+        padding: 1rem 1.5rem;
+        background: black;
+        color: #fff;
+        border-radius: 0.375rem;
+        font-size: 1rem;
+        font-weight: 700;
+        text-align: center;
+        transition: all 0.3s ease;
+    }
+    .wkit-disconnect-button:hover {
+        background: #ffc30d;
+    }
+    .set {
+        font-size: 1rem; /* Consistent size for settings icon */
+        margin: 5px 0; /* Equal spacing */
+    }
+}
+.wkit-dialog__content {
+    box-sizing: border-box;
+    padding: 20px 10px;
+    width: 400px;
+    position: relative;
+    background: rgba(39, 39, 39, 0.3);
+    border: 1.5px solid rgba(255, 255, 255, 0.2);
+    margin: auto;
+    margin-bottom: 15px;
+    margin-top: 20px;
+    border-radius: 15px;
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+    color: #fff;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    
+}
+.wkit-new-to-movement {
+    width: 100%;
+    height: 65px;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    box-sizing: border-box;
+    background: none;
+    margin: auto;
+    padding-left: 24px;
+    margin-bottom: 15px;
+    margin-top: 20px;
+    border-radius: 15px;
+    color: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-top: 1px solid rgba(var(--wkit-on-bg-rgb), 0.1);
+    border-radius: 0px 0px var(--wkit-border-radius) var(--wkit-border-radius);
+}
+.wkit-new-to-movement__text {
+    font-weight: 500;
+    font-size: var(--wkit-font-size-small);
+    line-height: var(--wkit-line-height-small);
+    background: linear-gradient(45deg, #ffc30d, #b80af7);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+}
+.wkit-dialog__title {
+    font-weight: 700;
+    font-size: var(--wkit-font-size-large);
+    line-height: var(--wkit-line-height-large);
+    text-align: center;
+    background: linear-gradient(45deg, #ffc30d, #b80af7);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    margin: 0;
+}
+.wkit-select-item {
+    background-color: var(--wkit-button-bg-varient1);
+    color: white;
+}
+.wkit-select-item:hover {
+    background-color: rgba(var(--wkit-on-bg-rgb), .03);
+   color: white;
+}
+.wkit-dialog__close {
+    color: white;
+}
+.wkit-select__title {
+    font-size: var(--wkit-font-size-small);
+    font-family: var(--wkit-font-family);
+    line-height: var(--wkit-line-height-small);
+    background: linear-gradient(45deg, #ffc30d, #b80af7);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    margin-bottom: 15px;
+    margin-left: 6px;
+}
+.wkit-connecting__title, .wkit-install__title {
+    font-weight: 700;
+    font-size: var(--wkit-font-size-large);
+    line-height: var(--wkit-line-height-large);
+    font-family: var(--wkit-font-family);
+    text-align: center;
+    background: linear-gradient(45deg, #ffc30d, #b80af7);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    margin: 0;
+}
+
+.wkit-connecting__description, .wkit-install__description {
+    font-size: var(--wkit-font-size-small);
+    line-height: var(--wkit-line-height-small);
+    font-family: var(--wkit-font-family);
+    color: white;
+    text-align: center;
+    margin-top: 5px;
+}
