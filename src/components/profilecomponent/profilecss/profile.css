@@ -3,7 +3,6 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    min-height: 100vh;
     color: #fff;
     font-family: 'Roboto', sans-serif;
   }
@@ -17,8 +16,8 @@
     padding: 40px 20px;
     border: 1.5px solid rgba(255, 255, 255, 0.2);
     margin: auto;
-    width: 100%;
-    max-width: 600px;
+    width: 300px;
+  
     margin-top: 50px;
     border-radius: 20px;
     background: rgba(39, 39, 39, 0.7);
@@ -127,7 +126,7 @@
   
   .user-info-form input,
   .user-info-form textarea {
-    width: 100%;
+    width: 90%;
     padding: 10px;
     margin-top: 5px;
     border-radius: 10px;

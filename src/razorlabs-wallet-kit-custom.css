@@ -144,7 +144,7 @@
 .wkit-dialog__content {
     box-sizing: border-box;
     padding: 20px 10px;
-    width: 3ch;
+    width: 300px;
     position: relative;
     background: rgba(39, 39, 39, 0.3);
     border: 1.5px solid rgba(255, 255, 255, 0.2);
