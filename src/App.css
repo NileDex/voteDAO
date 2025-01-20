@@ -300,8 +300,11 @@ a:focus {
   .styled-table td {
     padding: 8px 10px;
   }
+  .proposal-filter{
+    width:  100%;
+  }
   .proposal-filter input {
-    width: 100%;
+    width: 350px;
   }
   .proposal-filter h3 {
     display: none;
