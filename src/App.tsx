@@ -71,7 +71,7 @@ import Move from "./components/votecomponent/Vote";
 import Profile from "./components/profilecomponent/Profile";
 import Footer from "./components/votecomponent/utils/Footer";
 import AnalyticsPage from "./components/Analytics/analytics";
-import CommunityGovernance from "./components/community/CommunityGovernance";
+
 
 
 function App() {
