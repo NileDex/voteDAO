@@ -514,3 +514,30 @@ body::after {
     font-size: 16px;
   }
 }
+
+
+
+
+
+
+
+.proposal-form {
+  max-width: 500px;
+  margin: 20px auto;
+  padding: 20px;
+}
+
+.form-group {
+  margin-bottom: 15px;
+}
+
+.form-group input,
+.form-group textarea {
+  width: 100%;
+  padding: 8px;
+  margin-top: 5px;
+}
+
+.form-group textarea {
+  min-height: 100px;
+}

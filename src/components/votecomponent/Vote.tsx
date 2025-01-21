@@ -1,5 +1,4 @@
 import { ChangeEvent, useState } from "react";
-import Header from "../Header";
 import { IoChevronBackOutline } from "react-icons/io5";
 import { Link } from "react-router-dom";
 import { createEntryPayload } from "@thalalabs/surf";
@@ -25,8 +24,8 @@ const Move = () => {
       function: "create_vote",
       typeArguments: [],
       functionArguments: [
-        "Vote Question 2",
-        "Vote Description 2",
+        "Vote Question 1",
+        "Vote Description 1",
         dateToSeconds(new Date(2024, 1, 1)),
         dateToSeconds(new Date(2025, 1, 1)),
       ],
@@ -56,7 +55,6 @@ const Move = () => {
 
   return (
     <div>
-      <Header />
       <div className="back">
         <Link to="/main">
           {" "}
