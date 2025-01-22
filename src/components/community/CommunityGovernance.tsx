@@ -1,4 +1,4 @@
-import React from 'react';
+
 import './css/CommunityGovernance.css';
 
 const SimpleCards = () => {
