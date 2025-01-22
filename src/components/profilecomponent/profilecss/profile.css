@@ -1,155 +1,154 @@
 /* Profile Container */
 .profile-container {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    color: #fff;
-    font-family: 'Roboto', sans-serif;
-  }
-  
-  /* Eligibility Container with Glassmorphism */
-  .eligible-container {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    padding: 40px 20px;
-    border: 1.5px solid rgba(255, 255, 255, 0.2);
-    margin: auto;
-    width: 300px;
-  
-    margin-top: 50px;
-    border-radius: 20px;
-    background: rgba(39, 39, 39, 0.7);
-    -webkit-backdrop-filter: blur(15px);
-    backdrop-filter: blur(15px);
-    box-shadow: 0 8px 15px rgba(0, 0, 0, 0.3);
-    text-align: center;
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-  }
-  
-  
-  /* Heading Styling */
-  .eligible-container h1 {
-    font-size: 2.5rem;
-    font-weight: 600;
-    margin-bottom: 20px;
-  }
-  
-  /* Paragraph Styling */
-  .eligible-container p {
-    font-size: 1.1rem;
-    line-height: 1.6;
-    margin-bottom: 20px;
-    color: #bbb;
-  }
-  
-  /* Button Styling */
-  .eligibility-button {
-    display: inline-block;
-    padding: 12px 25px;
-    background: linear-gradient(45deg,#ffc30d, #b80af7);
-    color: white;
-    text-decoration: none;
-    border-radius: 50px;
-    font-size: 1.1rem;
-    font-weight: 500;
-    transition: background 0.3s ease, transform 0.2s ease;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
-    margin-top: 20px;
-    border: none;
-  }
-  
-  .eligibility-button:hover {
-    background: linear-gradient(45deg,#ffc30d, #b80af7);
-    transform: scale(1.05);
-  }
-  
-  .eligibility-button:active {
-    transform: scale(0.98);
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
-  }
-  
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: #fff;
+  font-family: 'Roboto', sans-serif;
+}
+
+/* Eligibility Container with Glassmorphism */
+.eligible-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 40px 20px;
+  border: 1.5px solid rgba(255, 255, 255, 0.2);
+  margin: auto;
+  width: 400px;
+
+  margin-top: 50px;
+  border-radius: 20px;
+  background: rgba(39, 39, 39, 0.7);
+  -webkit-backdrop-filter: blur(15px);
+  backdrop-filter: blur(15px);
+  box-shadow: 0 8px 15px rgba(0, 0, 0, 0.3);
+  text-align: center;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+
+/* Heading Styling */
+.eligible-container h1 {
+  font-size: 2.5rem;
+  font-weight: 600;
+  margin-bottom: 20px;
+}
+
+/* Paragraph Styling */
+.eligible-container p {
+  font-size: 1.1rem;
+  line-height: 1.6;
+  margin-bottom: 20px;
+  color: #bbb;
+}
+
+/* Button Styling */
+.eligibility-button {
+  display: inline-block;
+  padding: 12px 25px;
+  background: linear-gradient(45deg, #ffc30d, #b80af7);
+  color: white;
+  text-decoration: none;
+  border-radius: 50px;
+  font-size: 1.1rem;
+  font-weight: 500;
+  transition: background 0.3s ease, transform 0.2s ease;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+  margin-top: 20px;
+  border: none;
+}
+
+.eligibility-button:hover {
+  background: linear-gradient(45deg, #ffc30d, #b80af7);
+  transform: scale(1.05);
+}
+
+.eligibility-button:active {
+  transform: scale(0.98);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+}
 
 
 
-  /* Progress Bar */
+
+/* Progress Bar */
 .progress-bar {
-    width: 100%;
-    background-color: #333;
-    border-radius: 50px;
-    margin: 20px 0;
-    height: 8px;
-    overflow: hidden;
-  }
-  
-  .progress {
-    height: 100%;
-    background: linear-gradient(45deg, #ffc30d, #b80af7);
-    border-radius: 50px;
-    transition: width 0.3s ease-in-out;
-  }
-  
-  /* NFT Frame */
-  .nft-frame {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    width: 300px;
-    height: 300px;
-    margin: 20px auto;
-    border: 2px solid rgba(255, 255, 255, 0.2);
-    border-radius: 20px;
-    background: rgba(39, 39, 39, 0.7);
-    box-shadow: 0 8px 15px rgba(0, 0, 0, 0.3);
-  }
-  
-  .nft-image {
-    width: 100%;
-    height: 100%;
-    border-radius: 15px;
-    object-fit: cover;
-  }
-  
-  /* Form Styling */
-  .user-info-form {
-    display: flex;
-    flex-direction: column;
-    gap: 15px;
-  }
-  
-  .user-info-form label {
-    font-size: 1.1rem;
-    color: #bbb;
-    text-align: left;
-  }
-  
-  .user-info-form input,
-  .user-info-form textarea {
-    width: 90%;
-    padding: 10px;
-    margin-top: 5px;
-    border-radius: 10px;
-    border: none;
-    background: rgba(255, 255, 255, 0.1);
-    color: #fff;
-    font-size: 1rem;
-  }
-  
-  .user-info-form input::placeholder,
-  .user-info-form textarea::placeholder {
-    color: #aaa;
-  }
-  
-  .user-info-form input:focus,
-  .user-info-form textarea:focus {
-    outline: none;
-    background: rgba(255, 255, 255, 0.2);
-  }
-  
-  /* Button Group */
-  .button-group {
-    display: flex;
-    justify-content: space-between;
-  }
-  
+  width: 100%;
+  background-color: #333;
+  border-radius: 50px;
+  margin: 20px 0;
+  height: 8px;
+  overflow: hidden;
+}
+
+.progress {
+  height: 100%;
+  background: linear-gradient(45deg, #ffc30d, #b80af7);
+  border-radius: 50px;
+  transition: width 0.3s ease-in-out;
+}
+
+/* NFT Frame */
+.nft-frame {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 300px;
+  height: 300px;
+  margin: 20px auto;
+  border: 2px solid rgba(255, 255, 255, 0.2);
+  border-radius: 20px;
+  background: rgba(39, 39, 39, 0.7);
+  box-shadow: 0 8px 15px rgba(0, 0, 0, 0.3);
+}
+
+.nft-image {
+  width: 100%;
+  height: 100%;
+  border-radius: 15px;
+  object-fit: cover;
+}
+
+/* Form Styling */
+.user-info-form {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.user-info-form label {
+  font-size: 1.1rem;
+  color: #bbb;
+  text-align: left;
+}
+
+.user-info-form input,
+.user-info-form textarea {
+  width: 90%;
+  padding: 10px;
+  margin-top: 5px;
+  border-radius: 10px;
+  border: none;
+  background: rgba(255, 255, 255, 0.1);
+  color: #fff;
+  font-size: 1rem;
+}
+
+.user-info-form input::placeholder,
+.user-info-form textarea::placeholder {
+  color: #aaa;
+}
+
+.user-info-form input:focus,
+.user-info-form textarea:focus {
+  outline: none;
+  background: rgba(255, 255, 255, 0.2);
+}
+
+/* Button Group */
+.button-group {
+  display: flex;
+  justify-content: space-between;
+}

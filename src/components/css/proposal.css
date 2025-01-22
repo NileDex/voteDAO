@@ -1,0 +1,33 @@
+.offline-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    color: #6c757d; /* Muted gray text */
+    font-family: 'Arial', sans-serif; /* Clean font */
+    padding: 20px; /* Add padding for spacing */
+  }
+  
+  .offline-container p {
+    margin-top: 10px; /* Space below the icon */
+    font-size: 18px; /* Readable text size */
+    color: #495057; /* Slightly darker text for better readability */
+  }
+  
+  .offline-container svg {
+    margin-bottom: 10px; /* Space below the icon */
+    animation: pulse 1.5s infinite ease-in-out; /* Subtle scaling animation */
+  }
+  
+  @keyframes pulse {
+    0%, 100% {
+      transform: scale(1); /* Default size */
+      opacity: 1; /* Full opacity */
+    }
+    50% {
+      transform: scale(1.1); /* Slightly larger */
+      opacity: 0.8; /* Slightly faded */
+    }
+  }
+  

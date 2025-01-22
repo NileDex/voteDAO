@@ -4,7 +4,7 @@
 // import { useVotes } from "./useVotes";
 
 // const Proposals = () => {
-//   const [filter, setFilter] = useState("");
+//   const [filter, setFilter] = useState<string>("");
 //   const { data: votes } = useVotes();
 
 //   if (!votes) return null;
@@ -13,16 +13,16 @@
 //     proposal.title.toLowerCase().includes(filter.toLowerCase())
 //   );
 
-//   // const formatDate = (timestamp) => {
-//   //   const date = new Date(timestamp * 1000); // Convert seconds to milliseconds
-//   //   return date.toLocaleDateString("en-US", {
-//   //     year: "numeric",
-//   //     month: "long",
-//   //     day: "numeric",
-//   //     hour: "2-digit",
-//   //     minute: "2-digit",
-//   //   });
-//   // };
+//   const formatDate = (timestamp: number): string => {
+//     const date = new Date(timestamp * 1000); // Convert seconds to milliseconds
+//     return date.toLocaleDateString("en-US", {
+//       year: "numeric",
+//       month: "long",
+//       day: "numeric",
+//       hour: "2-digit",
+//       minute: "2-digit",
+//     });
+//   };
 
 //   return (
 //     <div className="proposal">
@@ -63,8 +63,8 @@
 //                     </Link>
 //                   </button>
 //                 </td>
-//                 <td>{formatDate(proposal.start_time)}</td>
-//                 <td>{formatDate(proposal.end_time)}</td>
+//                 <td>{proposal.start_time ? formatDate(Number(proposal.start_time)) : "N/A"}</td>
+//                 <td>{proposal.end_time ? formatDate(Number(proposal.end_time)) : "N/A"}</td>
 //                 <td>
 //                   {parseInt(proposal.total_yes_votes) / Math.pow(10, 8)} MOVE
 //                 </td>
@@ -74,7 +74,6 @@
 //               </tr>
 //             ))}
 //           </tbody>
-          
 //         </table>
 //       </div>
 //     </div>
@@ -82,21 +81,46 @@
 // };
 
 // export default Proposals;
+
 import { useState } from "react";
-import "../App.css";
+import "./css/proposal.css";
 import { Link } from "react-router-dom";
 import { useVotes } from "./useVotes";
+import { IoCloudOfflineOutline } from "react-icons/io5"; // Offline icon
 
 const Proposals = () => {
   const [filter, setFilter] = useState<string>("");
+
+  // Get votes and account information
   const { data: votes } = useVotes();
+  const isConnected = votes !== undefined && votes.length > 0; // Check if connected by ensuring data exists
 
-  if (!votes) return null;
+  // Show offline icon and message if the wallet is not connected
+  if (!isConnected) {
+    return (
+      <div className="offline-container">
+        <IoCloudOfflineOutline size={80} color="#6c757d" />
+        <p>Your wallet is not connected. Please connect your wallet to view proposals.</p>
+      </div>
+    );
+  }
 
+  // Show offline icon and message if no votes are retrieved
+  if (!votes || votes.length === 0) {
+    return (
+      <div className="offline-container">
+        <IoCloudOfflineOutline size={80} color="#6c757d" />
+        <p>No votes found on the blockchain. Please check your connection or try again later.</p>
+      </div>
+    );
+  }
+
+  // Filter proposals based on user input
   const filteredProposals = votes.filter((proposal) =>
     proposal.title.toLowerCase().includes(filter.toLowerCase())
   );
 
+  // Format timestamps for display
   const formatDate = (timestamp: number): string => {
     const date = new Date(timestamp * 1000); // Convert seconds to milliseconds
     return date.toLocaleDateString("en-US", {
