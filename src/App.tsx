@@ -49,7 +49,7 @@ function App() {
         />
         <Route path="/profile" element={<Profile />} />
         <Route path="/analytics" element={<AnalyticsPage />} />
-        {/* <Route path="/CommunityGovernance" element={<CommunityGovernance/>} /> */}
+        <Route path="/CommunityGovernance" element={ <SimpleCards/> } />
         <Route path="/vote" element={<Vote />} />
         <Route path="*" element={<Navigate to="/" />} />
       </Routes>
