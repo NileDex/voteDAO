@@ -5,10 +5,11 @@ import { createEntryPayload } from "@thalalabs/surf";
 import { ABI as StakingABI } from "../../services/Staking.ts";
 import { useAptosWallet } from "@razorlabs/wallet-kit";
 import { useStake } from "../useStake";
+import { MODULE_ADDRESS } from "../../constants.ts";
 
-const Move = () => {
+const Vote = () => {
   const [selectedOption, setSelectedOption] = useState("");
-  const { signAndSubmitTransaction } = useAptosWallet();
+  const { signAndSubmitTransaction, address } = useAptosWallet();
   const { data: stake } = useStake();
 
   if (!stake) return null;
@@ -96,10 +97,11 @@ const Move = () => {
                 Coop
               </label>
             </section>
-            <button className="votebtn" type="button" onClick={createVote}>
-              Create Vote
-            </button>
-
+            {address === "0x" + MODULE_ADDRESS && (
+              <button className="votebtn" type="button" onClick={createVote}>
+                Create Vote
+              </button>
+            )}
             <button
               className="votebtn"
               type="button"
@@ -133,4 +135,4 @@ const Move = () => {
   );
 };
 
-export default Move;
+export default Vote;
