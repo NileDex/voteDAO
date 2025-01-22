@@ -10,7 +10,6 @@
 // import FAQ from "./components/FAQ";
 // import Move from "./components/votecomponent/Vote";
 
-
 // function App() {
 //   const [showHeader, setShowHeader] = useState(true);
 
@@ -21,7 +20,7 @@
 //   return (
 //     <BrowserRouter>
 //       <Routes>
-       
+
 //         <Route
 //           path="/"
 //           element={
@@ -42,7 +41,7 @@
 //               <VoteData />
 //               <Proposals />
 //               <FAQ />
-            
+
 //             </div>
 //           }
 //         />
@@ -67,12 +66,10 @@ import Vitals from "./components/Vitals";
 import VoteData from "./components/VoteData";
 import Proposals from "./components/Proposals";
 import FAQ from "./components/FAQ";
-import Move from "./components/votecomponent/Vote";
+import Vote from "./components/votecomponent/Vote";
 import Profile from "./components/profilecomponent/Profile";
 import Footer from "./components/votecomponent/utils/Footer";
 import AnalyticsPage from "./components/Analytics/analytics";
-
-
 
 function App() {
   const [showHeader, setShowHeader] = useState(true);
@@ -83,39 +80,37 @@ function App() {
 
   return (
     <BrowserRouter>
-            <div>
-                <div className="hero-background"></div>
-                {showHeader && (
-                  <div className="socials">
-                    <Socials />
-                    <p className="cancel-button" onClick={handleCancelClick}>
-                      <MdCancel />
-                    </p>
-                  </div>
-                )}
-              </div>
-              <Header />
+      <div>
+        <div className="hero-background"></div>
+        {showHeader && (
+          <div className="socials">
+            <Socials />
+            <p className="cancel-button" onClick={handleCancelClick}>
+              <MdCancel />
+            </p>
+          </div>
+        )}
+      </div>
+      <Header />
       <Routes>
         <Route
           path="/"
           element={
             <div className="App">
-      
               <Vitals />
               <VoteData />
               <Proposals />
               <FAQ />
-       
             </div>
           }
         />
         <Route path="/profile" element={<Profile />} />
         <Route path="/analytics" element={<AnalyticsPage />} />
         {/* <Route path="/CommunityGovernance" element={<CommunityGovernance/>} /> */}
-        <Route path="/vote" element={<Move />} />
+        <Route path="/vote" element={<Vote />} />
         <Route path="*" element={<Navigate to="/" />} />
       </Routes>
-      <Footer/>
+      <Footer />
     </BrowserRouter>
   );
 }
